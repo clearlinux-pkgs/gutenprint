@@ -4,7 +4,7 @@
 #
 Name     : gutenprint
 Version  : 5.2.14
-Release  : 1
+Release  : 2
 URL      : https://phoenixnap.dl.sourceforge.net/project/gimp-print/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
 Source0  : https://phoenixnap.dl.sourceforge.net/project/gimp-print/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
 Summary  : Gutenprint Top Quality Printer Drivers
@@ -27,6 +27,7 @@ BuildRequires : e2fsprogs-dev
 BuildRequires : flex
 BuildRequires : ghostscript
 BuildRequires : ghostscript-dev
+BuildRequires : gnutls-dev
 BuildRequires : krb5-dev
 BuildRequires : pkgconfig(gimpui-2.0)
 BuildRequires : pkgconfig(gtk+-2.0)
@@ -111,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530584978
+export SOURCE_DATE_EPOCH=1535065316
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -120,7 +121,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1530584978
+export SOURCE_DATE_EPOCH=1535065316
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/gutenprint
 cp COPYING %{buildroot}/usr/share/doc/gutenprint/COPYING
