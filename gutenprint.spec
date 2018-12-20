@@ -4,18 +4,18 @@
 #
 Name     : gutenprint
 Version  : 5.2.14
-Release  : 2
-URL      : https://phoenixnap.dl.sourceforge.net/project/gimp-print/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
-Source0  : https://phoenixnap.dl.sourceforge.net/project/gimp-print/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
+Release  : 3
+URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
+Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.2/5.2.14/gutenprint-5.2.14.tar.bz2
 Summary  : Gutenprint Top Quality Printer Drivers
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: gutenprint-bin
-Requires: gutenprint-lib
-Requires: gutenprint-data
-Requires: gutenprint-license
-Requires: gutenprint-locales
-Requires: gutenprint-man
+Requires: gutenprint-bin = %{version}-%{release}
+Requires: gutenprint-data = %{version}-%{release}
+Requires: gutenprint-lib = %{version}-%{release}
+Requires: gutenprint-license = %{version}-%{release}
+Requires: gutenprint-locales = %{version}-%{release}
+Requires: gutenprint-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : cups
 BuildRequires : cups-dev
@@ -42,9 +42,9 @@ It is not necessary for end users of Gutenprint to read this file.
 %package bin
 Summary: bin components for the gutenprint package.
 Group: Binaries
-Requires: gutenprint-data
-Requires: gutenprint-license
-Requires: gutenprint-man
+Requires: gutenprint-data = %{version}-%{release}
+Requires: gutenprint-license = %{version}-%{release}
+Requires: gutenprint-man = %{version}-%{release}
 
 %description bin
 bin components for the gutenprint package.
@@ -61,10 +61,10 @@ data components for the gutenprint package.
 %package dev
 Summary: dev components for the gutenprint package.
 Group: Development
-Requires: gutenprint-lib
-Requires: gutenprint-bin
-Requires: gutenprint-data
-Provides: gutenprint-devel
+Requires: gutenprint-lib = %{version}-%{release}
+Requires: gutenprint-bin = %{version}-%{release}
+Requires: gutenprint-data = %{version}-%{release}
+Provides: gutenprint-devel = %{version}-%{release}
 
 %description dev
 dev components for the gutenprint package.
@@ -73,8 +73,8 @@ dev components for the gutenprint package.
 %package lib
 Summary: lib components for the gutenprint package.
 Group: Libraries
-Requires: gutenprint-data
-Requires: gutenprint-license
+Requires: gutenprint-data = %{version}-%{release}
+Requires: gutenprint-license = %{version}-%{release}
 
 %description lib
 lib components for the gutenprint package.
@@ -112,7 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535065316
+export SOURCE_DATE_EPOCH=1545265762
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
@@ -121,11 +121,11 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1535065316
+export SOURCE_DATE_EPOCH=1545265762
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/gutenprint
-cp COPYING %{buildroot}/usr/share/doc/gutenprint/COPYING
-cp src/cups/COPYING %{buildroot}/usr/share/doc/gutenprint/src_cups_COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
+cp COPYING %{buildroot}/usr/share/package-licenses/gutenprint/COPYING
+cp src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/src_cups_COPYING
 %make_install
 %find_lang gutenprint
 
@@ -520,12 +520,12 @@ cp src/cups/COPYING %{buildroot}/usr/share/doc/gutenprint/src_cups_COPYING
 /usr/lib64/libgutenprintui2.so.1.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/gutenprint/COPYING
-/usr/share/doc/gutenprint/src_cups_COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/gutenprint/COPYING
+/usr/share/package-licenses/gutenprint/src_cups_COPYING
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/escputil.1
 /usr/share/man/man8/cups-calibrate.8
 /usr/share/man/man8/cups-genppd.8
