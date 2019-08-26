@@ -17,9 +17,7 @@ Configure miss: db2html
 Configure miss: lrzip
 Configure miss: rzip
 Configure miss: zpaq
-Configure miss: if gcc supports -Wstrict-prototypes
 Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
-Configure miss: backend_common.c:1357:3: warning: format not a string literal and no format arguments [-Wformat-security]

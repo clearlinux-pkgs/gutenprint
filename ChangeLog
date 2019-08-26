@@ -1,5 +1,1465 @@
-===============================================================================
-Name: gutenprint-5_3_1
+2019-08-25  <Robert Krawitz>	ee7fdeebf2bda2e0412fdd7731ec4b824488f5f5
+
+	Lines: +18, -17
+	Files:	NEWS (+4, -4)
+		README (+8, -7)
+		configure.ac (+6, -6)
+
+	Prep 5.3.3
+
+2019-08-20  <Solomon Peachy>	7a0b8f72dd8213371a96c8357c7865859ba79fe0
+
+	Lines: +33, -51
+	Files:	src/main/print-dyesub.c (+33, -51)
+
+	dyesub: dnp-ds620:  Clean up cutter control code a bit.
+
+2019-08-18  <Stephen Letter>	2a3b02a8d83e1186f75e1f367ab380e22e6f1b24
+
+	Lines: +10, -10
+	Files:	macosx/makegutenpkg.sh (+10, -10)
+
+	first update of Mac Build script for 5.3
+
+2019-08-15  <Solomon Peachy>	75bb2d2ae2d757a012e7e99365bc0106280a7bc3
+
+	Lines: +52, -35
+	Files:	src/cups/backend_kodak605.c (+23, -27)
+		src/cups/backend_shinkos6245.c (+29, -8)
+
+	dyesub: backends:  Bugfixes for Kodak 8810, 70xx, and 605 printers.
+
+	 * Better error handling for 70xx/605
+	 * Better detection of printer busy for 70xx/605
+	 * 8810 reports remaining media properly
+
+2019-08-13  <Solomon Peachy>	2f4213120ec785f503ced7ca1d0eceabfdc3e754
+
+	Lines: +46, -19
+	Files:	src/cups/backend_shinkos6245.c (+27, -8)
+		src/cups/backend_sinfonia.c (+1, -0)
+		src/cups/backend_sinfonia.h (+7, -4)
+		src/main/print-dyesub.c (+10, -6)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Kodak 8810 is now usable, and no longer considerd experimental.
+
+2019-08-12  <Solomon Peachy>	938c526c33eb51b66aeae8b663009178d024890c
+
+	Lines: +59, -23
+	Files:	src/cups/backend_kodak605.c (+16, -8)
+		src/cups/backend_sinfonia.c (+14, -3)
+		src/cups/backend_sinfonia.h (+20, -5)
+		src/main/print-dyesub.c (+8, -6)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  The Kodak 7000 is now usable, and no longer considered experimental.
+
+	The Kodak 7010 and 7015 are likely functional too, but this has not been confirmed.
+
+2019-08-12  <Solomon Peachy>	6674a7de7c7501aae2340aacc073b71f14daefb7
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Directly generate YMC planar data for Sinfonia S6145 family.
+
+	Manufacturer drivers generate BGR packed, which the backend has to
+	translate to TMC planar before further processing and sending to the
+	printer.  This code was written in early 2017 but nobody was able to
+	test it until now.
+
+2019-08-10  <Solomon Peachy>	b5ff93d565937701d1ce655692cf8e72abc97b7b
+
+	Lines: +2, -2
+	Files:	src/cups/backend_shinkos6145.c (+2, -2)
+
+	dyesub: backend:  Fix another bad sizeof() in the media query code.
+
+2019-08-10  <Solomon Peachy>	cdc7bcfcdd0bf7c0f28cc50c706e6909413aa88e
+
+	Lines: +3, -3
+	Files:	src/cups/backend_shinkos6145.c (+3, -3)
+
+	dyesub:  backend:  Fix a null pointer dereference in the printer attach code.
+
+2019-08-04  <Robert Krawitz>	7057f60c3e184fbb1151c5c101b9c156db9cbd14
+
+	Lines: +2, -0
+	Files:	NEWS (+1, -0)
+		src/xml/printers/escp2.xml (+1, -0)
+
+	Support Epson L130
+
+2019-08-03  <Robert Krawitz>	f1284d089486d16052f61f65757aadccaa122232
+
+	Lines: +2, -2
+	Files:	scripts/build-release (+2, -2)
+
+	Generate environment list more robustly
+
+2019-07-20  <Robert Krawitz>	aaf86a139f2562a5cc5bbe4eddf5af2748fd1d86
+
+	Lines: +32, -23
+	Files:	scripts/build-release (+23, -14)
+		scripts/wzpaq.in (+9, -9)
+
+	Minor cleanup
+
+2019-07-16  <Solomon Peachy>	71d4ea3ce4e2b7294b7eeca3886e4969949e4547
+
+	Lines: +9, -9
+	Files:	src/cups/backend_kodak6800.c (+2, -2)
+		src/cups/backend_shinkos6145.c (+3, -3)
+		src/cups/backend_sinfonia.c (+1, -1)
+		src/cups/backend_sinfonia.h (+3, -3)
+
+	dyesub: backend:  Silence some compile warnings on newer GCCs.
+
+	(there were some unchecked return codes from the write() syscall)
+
+2019-07-16  <Solomon Peachy>	2ac1ac91b4f661a81cc11f0ed423ca7399ffaad7
+
+	Lines: +269, -82
+	Files:	src/cups/backend_dnpds40.c (+269, -82)
+
+	dyesub: backend:  DNP:  Support parsing the windows spool format.
+
+	Verified on the RX1, DS620, and DS820.
+
+	DS80DX is the only unknown, as its windows drivers are braindead.
+
+2019-07-13  <Solomon Peachy>	2107f9dac1e0db648598d9c9c7c7f0c250001e8f
+
+	Lines: +10, -8
+	Files:	src/cups/backend_kodak6800.c (+8, -6)
+		src/cups/backend_shinkos1245.c (+2, -2)
+
+	dyesub: backend:  Fix major regressions for Kodak 6800/6850 and Shinko S1245
+
+	 * Printer-generated copies incorrectly byteswapped a BCD field.
+	 * 6800/6850 missed a necessary byteswap.
+
+2019-07-13  <Solomon Peachy>	dc49153d9f78d1adb7655ba153a838c3b172573f
+
+	Lines: +111, -2
+	Files:	NEWS (+4, -1)
+		src/main/print-dyesub.c (+105, -0)
+		src/xml/printers/dyesub.xml (+2, -1)
+
+	dyesub: Preliminary support for Sinfonia CHC-S2245
+
+2019-06-22  <Robert Krawitz>	7924eb3659a7d7774a4ece3250e66926ed1b2374
+
+	Lines: +0, -0
+	Files:	configure.ac (+0, -0)
+
+	Fix trailing whitespace
+
+2019-06-22  <Robert Krawitz>	353480ddd99c39fb16dfa1068def7978612ef52b
+
+	Lines: +59, -37
+	Files:	NEWS (+24, -5)
+		README (+35, -32)
+
+	Update CUPS documentation
+
+2019-06-22  <Robert Krawitz>	80cce63d63757b3d41dbc1c604327527876c27ba
+
+	Lines: +28, -3
+	Files:	configure.ac (+28, -3)
+
+	Error out if CUPS devel is not installed unless user specified --without-cups
+
+2019-06-15  <Robert Krawitz>	e55733ff91ca46ee8bbfb2716cff2582437b3ad0
+
+	Lines: +44, -25
+	Files:	scripts/autogen.sh (+1, -1)
+		scripts/build-release (+43, -24)
+
+	Clean up shellcheck warnings
+
+2019-06-07  <Robert Krawitz>	7d22dc54155bee946962fa669371f5e7b71a477e
+
+	Lines: +9, -1
+	Files:	scripts/build-release (+9, -1)
+
+	Report environment variables
+
+2019-06-05  <Solomon Peachy>	9aa804dab974147299226d9d8c60633cb13b24bc
+
+	Lines: +1268, -1577
+	Files:	src/cups/backend_canonselphy.c (+0, -10)
+		src/cups/backend_canonselphyneo.c (+0, -10)
+		src/cups/backend_common.c (+22, -4)
+		src/cups/backend_common.h (+10, -0)
+		src/cups/backend_dnpds40.c (+9, -2)
+		src/cups/backend_kodak1400.c (+0, -10)
+		src/cups/backend_kodak605.c (+299, -319)
+		src/cups/backend_kodak6800.c (+74, -65)
+		src/cups/backend_magicard.c (+1, -10)
+		src/cups/backend_mitsu70x.c (+1, -1)
+		src/cups/backend_mitsud90.c (+0, -10)
+		src/cups/backend_mitsup95d.c (+0, -10)
+		src/cups/backend_shinkos1245.c (+1, -21)
+		src/cups/backend_shinkos2145.c (+36, -184)
+		src/cups/backend_shinkos6145.c (+68, -484)
+		src/cups/backend_shinkos6245.c (+47, -425)
+		src/cups/backend_sinfonia.c (+560, -0)
+		src/cups/backend_sinfonia.h (+112, -2)
+		src/cups/backend_sonyupd.c (+10, -10)
+		src/cups/blacklist (+18, -0)
+
+	dyesub:  backend:  Synchronize the latest Sinfonia code
+
+	 * Code unification and consolidation.
+	 * Small pile of memory leaks and other issues from static analysis
+	 * Preliminary Kodak 70xx and Kodak 8810 support
+	 * Preliminary Sinfonia S2245, Kodak 6900, and HiTi M610 support
+
+2019-05-27  <Robert Krawitz>	0421c7ae9b9211ef68c1cfdb4b696f7a3ca5c135
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	distcheck_minimal should precede prep_release
+
+2019-05-27  <Robert Krawitz>	44b6d9629cb52e579ddc0a0f24974b7344435e41
+
+	Lines: +7, -2
+	Files:	scripts/build-release (+7, -2)
+
+	Fix the name of the tarball to be saved.
+
+2019-05-26  <Robert Krawitz>	0ca6426d26e30cf30d66c85bfab70bfe9ffc8d12
+
+	Lines: +1, -1
+	Files:	src/testpattern/Makefile.am (+1, -1)
+
+	Finish fixing the name of the checksums file
+
+2019-05-26  <Robert Krawitz>	44acb55447d087594bdf9fc7e41fa16cc0d1ac3e
+
+	Lines: +5, -1
+	Files:	scripts/build-release (+5, -1)
+
+	maintainer-clean should succeed if there's no top makefile
+
+2019-05-25  <Robert Krawitz>	ab173fe5a54903fed9cc6e23d49777ce3c9cae02
+
+	Lines: +6, -1
+	Files:	scripts/build-release (+5, -0)
+		src/testpattern/Makefile.am (+1, -1)
+
+	Fix checksum filename, add run_maintainer_clean to build-release
+
+2019-05-25  <Robert Krawitz>	fd32f7dc5292acf9073911dd4bae03856a63f301
+
+	Lines: +1, -1
+	Files:	src/testpattern/Makefile.am (+1, -1)
+
+	Fix checksum filename for snapshot
+
+2019-05-25  <Robert Krawitz>	9be54a7a82508f78032b7695f506f40d3c1e6409
+
+	Lines: +1, -1
+	Files:	scripts/snapstamp (+1, -1)
+
+	Colons in paths cause problems for libtool.
+
+2019-05-25  <Robert Krawitz>	9cb08cb8cfe5aafb924e24ce3a594378d20c45ce
+
+	Lines: +1, -0
+	Files:	Makefile.am (+1, -0)
+
+	Looks like we need to pre-build src/xml/xmli18n-tmp.h after
+
+	all for now.
+
+2019-05-25  <Robert Krawitz>	735d83b267c5fd5958faa603363988f2d8e69672
+
+	Lines: +5, -5
+	Files:	scripts/build-release (+5, -5)
+
+	Don't add the checksums file (for now, at any rate)
+
+2019-05-25  <Robert Krawitz>	a7fc7520fc75a22a9854703b72407404ee1da3f8
+
+	Lines: +3, -2
+	Files:	scripts/build-release (+2, -1)
+		scripts/snapstamp (+1, -1)
+
+	Put date in snapshot ID
+
+2019-05-25  <Robert Krawitz>	a21b5b89bc073415c32d5a324d05fd919b4a037a
+
+	Lines: +7, -5
+	Files:	Makefile.am (+7, -5)
+
+	Only dist needs to depend on xmli18n-tmp.h.
+
+	This isn't really correct; it should be any build in the po directory,
+	but it's hard to inject dependencies there.
+
+2019-05-25  <Robert Krawitz>	670ff64d0184133409f607776b7a875dea6222f2
+
+	Lines: +9, -2
+	Files:	scripts/gversion.in (+9, -2)
+
+	Try to find the most appropriate tag.
+
+2019-05-25  <Robert Krawitz>	4c0bd81e0d988b5e2c6a837af6f0f5702decda11
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	Don't use tput unless TERM is set.
+
+2019-05-24  <Robert Krawitz>	60bbfde3bf039043fd6656228a825301bb6fb472
+
+	Lines: +363, -377
+	Files:	Makefile.am (+6, -2)
+		m4local/stp.m4 (added +37)
+		m4local/stp_cups.m4 (added +148)
+		m4local/stp_option.m4 (added +172)
+		scripts/autogen.sh (+0, -375)
+
+	Put the stp*.m4 files in the m4local directory as should properly be the case.
+
+	Allow running make dist* without doing a make right after autogen.
+
+2019-05-23  <Robert Krawitz>	ed9833828b623b72f975ec7cf628c2837350265d
+
+	Lines: +420, -394
+	Files:	Makefile.am (+7, -26)
+		m4/stp.m4 (removed -37)
+		m4/stp_cups.m4 (removed -148)
+		m4/stp_option.m4 (removed -173)
+		scripts/Makefile.am (+14, -1)
+		scripts/autogen.sh (+379, -6)
+		src/main/Makefile.am (+8, -3)
+		src/xml/dither/Makefile.am (+1, -0)
+		src/xml/escp2/inks/Makefile.am (+1, -0)
+		src/xml/escp2/inputslots/Makefile.am (+1, -0)
+		src/xml/escp2/media/Makefile.am (+1, -0)
+		src/xml/escp2/mediasizes/Makefile.am (+1, -0)
+		src/xml/escp2/model/Makefile.am (+1, -0)
+		src/xml/escp2/model/base/Makefile.am (+1, -0)
+		src/xml/escp2/qualitypresets/Makefile.am (+1, -0)
+		src/xml/escp2/resolutions/Makefile.am (+1, -0)
+		src/xml/escp2/weaves/Makefile.am (+1, -0)
+		src/xml/papers/Makefile.am (+1, -0)
+		src/xml/printers/Makefile.am (+1, -0)
+
+	make maintainer-clean improvements
+
+2019-05-23  <Robert Krawitz>	64751440a0aa3bfc413e1cf9d8479947cd28b601
+
+	Lines: +7, -0
+	Files:	scripts/autogen.sh (+7, -0)
+
+	Test for glib-mkenums, needed for maintainer build
+
+2019-05-21  <Solomon Peachy>	62b8caf6cad9a33ffbeee17ec0f0b51bca8bb44f
+
+	Lines: +4, -4
+	Files:	src/xml/printers/dyesub.xml (+4, -4)
+
+	dyesub:  Add IEEE1284 IDs for Kodak 8800, 7000, 7010, and 8810
+
+2019-05-20  <Solomon Peachy>	e68021ff23826827470f208f3bc402e1949cca40
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub:  Mark a couple of DS80DX print sizes as sheet-media only.
+
+	Purely cosmetic but it will help prevent some user confusion.
+
+2019-05-18  <Solomon Peachy>	16f5847d6db72e71642308b385df104481dc8299
+
+	Lines: +3, -2
+	Files:	NEWS (+3, -2)
+
+	NEWS update.
+
+2019-05-18  <Solomon Peachy>	162f1710e726da93058f22047534c2a9081c0ec3
+
+	Lines: +1, -1
+	Files:	src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Mark DS80DX as no longer experimental
+
+2019-05-18  <Solomon Peachy>	7adf5da9fe541fb909177f354d5236e610415395
+
+	Lines: +3, -1
+	Files:	src/main/print-dyesub.c (+3, -1)
+
+	dyesub:  Fix duplex job generation for DNP DS80DX
+
+2019-05-17  <Robert Krawitz>	61c86f853c4ee2086a61d8ac6464c888b8d95d21
+
+	Lines: +3, -1
+	Files:	scripts/build-release (+3, -1)
+
+	Fix -u error
+
+2019-05-17  <Robert Krawitz>	ffe75f26ab17a4d6639aabee13fe2f904db78337
+
+	Lines: +5, -2
+	Files:	scripts/Makefile.am (+5, -2)
+
+	Fix MAINTAINERCLEANFILES
+
+2019-05-17  <Robert Krawitz>	5a78094c527a522b321fc3f7532c868f6ffee404
+
+	Lines: +0, -117
+	Files:	src/cups/Makefile.am (+0, -1)
+		src/cups/README (removed -116)
+
+	Remove obsolete CUPS README
+
+2019-05-17  <Robert Krawitz>	9d5d3049c7ae91b225b18ada1e9d061055c1a007
+
+	Lines: +1, -1
+	Files:	src/cups/Makefile.am (+1, -1)
+
+	Fix release build
+
+2019-05-17  <Robert Krawitz>	453366c903b94f20ecb149a205b76f400e6abbfa
+
+	Lines: +0, -3
+	Files:	macosx/README (+0, -3)
+
+	Clean up trailing whitespace
+
+2019-05-17  <Solomon Peachy>	90949452d313a1702bf8155cbd7e29734779c7ef
+
+	Lines: +2216, -3309
+	Files:	src/cups/Makefile.am (+1, -1)
+		src/cups/backend_canonselphy.c (+7, -3)
+		src/cups/backend_common.c (+19, -14)
+		src/cups/backend_common.h (+3, -2)
+		src/cups/backend_kodak1400.c (+8, -8)
+		src/cups/backend_kodak605.c (+155, -108)
+		src/cups/backend_kodak6800.c (+53, -326)
+		src/cups/backend_magicard.c (+1, -0)
+		src/cups/backend_mitsu70x.c (+13, -2)
+		src/cups/backend_mitsu9550.c (+200, -218)
+		src/cups/backend_mitsup95d.c (+8, -1)
+		src/cups/backend_shinkos1245.c (+46, -431)
+		src/cups/backend_shinkos2145.c (+243, -688)
+		src/cups/backend_shinkos6145.c (+251, -827)
+		src/cups/backend_shinkos6245.c (+191, -679)
+		src/cups/backend_sinfonia.c (added +582)
+		src/cups/backend_sinfonia.h (added +434)
+		src/cups/backend_sonyupd.c (+1, -1)
+
+	dyesub:  backend:  Resync with upstream
+
+	 * Small pile of memory leaks and static analysis problems fixed
+	 * Mitsubishi 98xx series now relies on libMitsuImageReProcess
+	 * Sinfonia/Shinko printers share a lot of common code now
+	   (over 1KLOC of code reductions so far, more will come)
+
+2019-05-17  <Solomon Peachy>	99e894ac38f502887c5f46ef35517922a3f2c26c
+
+	Lines: +125, -73
+	Files:	src/cups/backend_dnpds40.c (+125, -73)
+
+	dyesub: backend:  Many fixes for the DNP DS80DX
+
+2019-05-15  <Stephen Letter>	1bfd2c082aa9fdecfb2b51e266fc22761f06159d
+
+	Lines: +24, -108
+	Files:	macosx/README (+19, -107)
+		macosx/libusb--1.0.22.high_sierra.bottle.tar.gz (added +0)
+		macosx/makegutenpkg.sh (+5, -1)
+
+	Update build script and build documentation.  Add libusb
+
+2019-05-14  <Robert Krawitz>	bf67fdf7c9bab1182ec61a6cf5ef70b20d4015d9
+
+	Lines: +13, -11
+	Files:	scripts/build-release (+12, -5)
+		scripts/snapstamp (+1, -6)
+
+	Take timestamp out of snapshot name
+
+	Fine tune final message for snapshot
+
+2019-05-13  <Robert Krawitz>	d15abe297b2ca6212dd77b4849abd196b1ec1d72
+
+	Lines: +3, -1
+	Files:	Makefile.am (+1, -1)
+		scripts/Makefile.am (+2, -0)
+
+	Minor build fixes
+
+2019-05-13  <Robert Krawitz>	e0bbd9747f4a3157e4d36b7493221d70e5b83787
+
+	Lines: +0, -0
+	Files:	src/testpattern/Checksums/sums.5.3.2-pre1-bb758d38-2019-05-13T08_46_12.zpaq (added +0)
+
+	Gutenprint 5.3.2-pre1-bb758d38-2019-05-13T08_46_12 release
+
+2019-05-12  <Robert Krawitz>	855850cabe5a8ec0a6c3e037618eac0949090a32
+
+	Lines: +0, -0
+	Files:	src/testpattern/Checksums/sums.5.3.2-pre1-e8ca3aa4-2019-05-12T22_12_52.zpaq (added +0)
+
+	Gutenprint 5.3.2-pre1-e8ca3aa4-2019-05-12T22_12_52 release
+
+2019-05-12  <Robert Krawitz>	e8ca3aa4c5dde7a55699ac177572587b10b56082
+
+	Lines: +1, -1
+	Files:	scripts/snapstamp (+1, -1)
+
+	Put the timestamp last to make it easier to parse out.
+
+2019-05-12  <Robert Krawitz>	6ca7b61c8850107ea168f097040712c7864da517
+
+	Lines: +2, -2
+	Files:	scripts/build-release (+2, -2)
+
+	Protect STP_BUILD_SNAPSHOT
+
+2019-05-12  <Robert Krawitz>	47c15069b6dca2caea2973cf8a000f64eef90f9b
+
+	Lines: +78, -10
+	Files:	Makefile.am (+32, -3)
+		configure.ac (+4, -2)
+		scripts/build-release (+17, -5)
+		scripts/snapstamp (added +25)
+
+	Add snapshot bulid capability
+
+2019-05-12  <Robert Krawitz>	a930cfa099918d1d8ece7b6741e4f60ff4d25b7a
+
+	Lines: +10, -15
+	Files:	scripts/build-release (+10, -15)
+
+	Fix failure reporting
+
+2019-05-12  <Solomon Peachy>	73566efcc2adf57cb2b80a7570ab43fd4b2a644d
+
+	Lines: +44, -17
+	Files:	src/cups/backend_kodak6800.c (+11, -8)
+		src/main/print-dyesub.c (+33, -9)
+
+	dyesub:  Extend unofficial size support to Kodak 6800
+
+	...And properly generate the header's 'mode' field.
+
+2019-05-12  <Solomon Peachy>	e638e32eb1c08a3eb3286877ccf50e4ba8d6e551
+
+	Lines: +15, -12
+	Files:	src/cups/backend_kodak6800.c (+13, -10)
+		src/main/print-dyesub.c (+2, -2)
+
+	dyesub:  Kodak6850 now has 4x6-div2 enabled!
+
+2019-05-12  <Solomon Peachy>	2aa0ea3f62f197c0dd868e06f3d6f9fa137a5aff
+
+	Lines: +173, -83
+	Files:	src/cups/backend_kodak6800.c (+144, -79)
+		src/main/print-dyesub.c (+29, -4)
+
+	dyesub:  Kodak 6800, 6850, and 605 offically supports 2x6 & 3x6 sizes
+
+	 * Need updated firmware to use this
+	 * Enabled unofficial 8x6-div2, 6x6, and 6x6-div2 sizes
+
+	Verified on 6850 only!
+
+2019-05-11  <Solomon Peachy>	4ef5442950ff3eaace81130da067a9fd48e3317e
+
+	Lines: +2, -9
+	Files:	src/cups/backend_kodak6800.c (+1, -4)
+		src/cups/backend_shinkos1245.c (+1, -5)
+
+	dyesub: backend: Fix Shinko S1245 and Kodak 68xx when submitting more than two jobs back-to-back
+
+2019-05-10  <Solomon Peachy>	ea565c9480a060d896c198a871d3a3aec6857a0b
+
+	Lines: +67, -22
+	Files:	src/cups/backend_sonyupd.c (+67, -22)
+
+	dyesub: backend:  Update Sony UP-D backend.
+
+2019-04-23  <Solomon Peachy>	7a48bc1543ab7e7b33b276a981eca54e93eb19d8
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub: Corrections for Sony UP-D898 family.
+
+2019-04-23  <Solomon Peachy>	65b0a2dee153405bbbf941b498f7020730c29e38
+
+	Lines: +238, -2
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+236, -2)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Preliminary support for the Sony UP-DR80MD
+
+	(Apparently it's different from the non-MD version!)
+
+2019-04-23  <Robert Krawitz>	b2ec8a0c09a54ec91dde6ee9315b26bc861346b3
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	Fix typo in emptyfiles... fix
+
+2019-04-23  <Robert Krawitz>	6d7a04b3dc8c0883abc904e5ac1834ae386762ee
+
+	Lines: +2, -2
+	Files:	scripts/build-release (+2, -2)
+
+	Another unbound variable fix
+
+2019-04-22  <Robert Krawitz>	a9fb5eaab39f7f7b80c352181050e59f94802827
+
+	Lines: +37, -16
+	Files:	scripts/build-release (+37, -16)
+
+	Miscellaneous build script fixes:
+
+	- Fix failed modules logic
+	- Slightly shorten CPU output
+	- Treat typoed module names as not found failures
+	- Improve reporting of finis output
+
+2019-04-22  <Robert Krawitz>	4d2676a0552304c7e72f4547eff25861cda10071
+
+	Lines: +8, -9
+	Files:	scripts/build-release (+8, -9)
+
+	Fix a few more unbound variables and exit logic
+
+2019-04-22  <Robert Krawitz>	eceb356119c9906bd1d76abba3444a6f9b7b9de6
+
+	Lines: +136, -68
+	Files:	scripts/build-release (+136, -68)
+
+	Fix many issues with the build script.
+
+2019-04-20  <Solomon Peachy>	1dc11a2c81dff61321577e2e2528bc835f079331
+
+	Lines: +7, -0
+	Files:	src/cups/backend_sonyupd.c (+7, -0)
+
+	dyesub:  backend:  Correct a regression with the Sony UP-DR897
+
+2019-04-20  <Solomon Peachy>	52fe4ba53d380b4389eb37fac1e3ccb9bb3702aa
+
+	Lines: +1, -1
+	Files:	src/cups/backend_sonyupd.c (+1, -1)
+
+	dyesub: backend:  Fix critical regression on UP-DR150/UP-DR200
+
+2019-04-19  <Solomon Peachy>	9c1d425c0f2cfcfd2b3cfa653c2eff8bfb538341
+
+	Lines: +233, -0
+	Files:	NEWS (+3, -0)
+		src/main/print-dyesub.c (+228, -0)
+		src/xml/printers/dyesub.xml (+2, -0)
+
+	dyesub:  Experimental support for Sony UP-CR20L / DNP DS-SL20
+
+2019-04-19  <Solomon Peachy>	98b2d3d9d949ee4a36603eca13c9c2cfb4648c80
+
+	Lines: +190, -13
+	Files:	NEWS (+2, -0)
+		src/main/print-dyesub.c (+187, -13)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Add preliminary support for the Sony UP-D898 family.
+
+	Completely untested.  Won't commit backend until I get someone to test
+	this stuff out.  And supply a USB PID..
+
+2019-04-12  <Solomon Peachy>	1ecf48a7fc8f2f8d68d61ce661c393ee5224572d
+
+	Lines: +64, -55
+	Files:	src/cups/Makefile.am (+1, -1)
+		src/cups/backend_common.c (+2, -2)
+		src/cups/{backend_sonyupdr150.c => backend_sonyupd.c} (+61, -52)
+
+	dyesub:  Backend:  Update latest Sony code.
+
+	Verified on UP-D895, UP-D897, and UP-CR10L
+
+	(Still need UP-DR150/UP-DR200..)
+
+2019-04-12  <Solomon Peachy>	f925f4c51ed6ca7777fba707ab5742df5e88429b
+
+	Lines: +27, -15
+	Files:	NEWS (+2, -3)
+		src/main/print-dyesub.c (+24, -11)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Bugfixes for Sony UP-CR10L, should work great now!
+
+2019-04-09  <Gernot Hassenpflug>	713bf91548877f5d802d74041c29d366d11be0d9
+
+	Lines: +1, -0
+	Files:	NEWS (+1, -0)
+
+	Added Samsung ProXpress SL-M3820ND as alias for HP Laserjet 4050
+
+2019-04-09  <Gernot Hassenpflug>	8d3875d1589eb78f01aa72619c98ea1cc90ddf06
+
+	Lines: +1, -0
+	Files:	src/xml/printers/pcl.xml (+1, -0)
+
+	Added Samsung ProXpress SL-3820ND as alias for HP Laserjet 4050
+
+2019-03-28  <Gernot Hassenpflug>	d5486a7947550d1d98e1cd625b08c8d2c95028d9
+
+	Lines: +15, -0
+	Files:	src/xml/printers/canon.xml (+15, -0)
+
+	Added several models to existing Canon series.
+
+2019-03-28  <Gernot Hassenpflug>	df67d3fa45573eb991b73da4e6663c6e9490504c
+
+	Lines: +18, -0
+	Files:	NEWS (+18, -0)
+
+	Added several models to existing Canon series.
+
+2019-03-24  <Robert Krawitz>	5554a22b0dafb1a60f11eaf93721d9ad40076787
+
+	Lines: +5, -1
+	Files:	scripts/count-cpus (+5, -1)
+
+	Fix apparently non-portable construct.
+
+2019-03-24  <Robert Krawitz>	530278e877479b5c95c3c88b0bd79ecd9f292559
+
+	Lines: +301, -250
+	Files:	scripts/build-release (+296, -241)
+		scripts/count-cpus (+1, -5)
+		scripts/travis/checksums (+1, -1)
+		scripts/travis/full (+1, -1)
+		scripts/travis/integration (+1, -1)
+		scripts/travis/smoke (+1, -1)
+
+	Rework build-release script
+
+2019-03-24  <Robert Krawitz>	1b15a0c873b7e58a8e2ffe70f5bc5096a1f2bcff
+
+	Lines: +4, -2
+	Files:	src/testpattern/run-testpattern-2.in (+4, -2)
+
+	Defend against 0/negative values of parallelism
+
+2019-03-23  <Robert Krawitz>	a1a66c7feb4d6b1401c5b2dc87dfb500a6425a00
+
+	Lines: +0, -0
+	Files:	src/testpattern/Checksums/sums.5.3.2-pre1.zpaq (added +0)
+
+	Gutenprint 5.3.2-pre1 release
+
+2019-03-23  <Robert Krawitz>	7eaf98acf2e0e42d8d459b8dfe85e9bb7b370414
+
+	Lines: +16, -11
+	Files:	NEWS (+9, -4)
+		README (+1, -1)
+		configure.ac (+6, -6)
+
+	Bump version
+
+2019-03-23  <Robert Krawitz>	b56202c376a4f192ed89bcaac8511de83e258117
+
+	Lines: +46, -46
+	Files:	scripts/build-release (+46, -46)
+
+	Minor cleanup
+
+2019-03-21  <Solomon Peachy>	2b8920287c69da4c666b4e7cf127ffd85c21acf8
+
+	Lines: +7, -6
+	Files:	src/cups/backend_sonyupdr150.c (+7, -6)
+
+	dyesub:  Bugfixes for the sony backend, UP-DR897 works great now.
+
+2019-03-20  <Solomon Peachy>	d5cae6364e12c6b75c69cff0f850a706c2e7cdd8
+
+	Lines: +6, -0
+	Files:	src/cups/blacklist (+6, -0)
+
+	dyesub:  Add UP-D895/897 to CUPS USB blacklist.
+
+2019-03-19  <Solomon Peachy>	279841d0ba30c125c6db90a91b2c850fe9889fbf
+
+	Lines: +938, -72
+	Files:	NEWS (+2, -1)
+		src/cups/backend_common.h (+23, -2)
+		src/cups/backend_sonyupdr150.c (+458, -63)
+		src/main/print-dyesub.c (+453, -6)
+		src/xml/printers/dyesub.xml (+2, -0)
+
+	dyesub:  Support the Sony UP-D895 and UP-D897 MedSci thermal printers
+
+	This includes a heavily-updated backend for all supported sony models,
+	now with some status reporting and some error detection!
+
+2019-03-19  <Solomon Peachy>	8c0a7111e6969fda9943503bcfed249454e4d364
+
+	Lines: +32, -7
+	Files:	NEWS (+6, -0)
+		src/main/print-dyesub.c (+26, -7)
+
+	dyesub:  Fix bugs with the Sony UP-DR150 and UP-DR200.
+
+2019-02-04  <Solomon Peachy>	22b7eb2645aa43c24044e8c0f420925b506b63be
+
+	Lines: +2, -2
+	Files:	NEWS (+1, -1)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Mark 'Nidac Copal DPB-6000' as no longer experimental.
+
+	It's confirmed working, but we don't have any sort of status reporting.
+
+2019-01-29  <Solomon Peachy>	0ff1c47c537e8c8d4f34db3d903dacdbc3a40b01
+
+	Lines: +4, -4
+	Files:	src/main/print-dyesub.c (+4, -4)
+
+	dyesub: Correct color encoding on Nidac Copal & some Fujifilm models.
+
+2019-01-13  <Solomon Peachy>	d75ba2329755721d6d57ba1c9ab3ab3017abe703
+
+	Lines: +100, -105
+	Files:	src/cups/backend_canonselphy.c (+1, -1)
+		src/cups/backend_common.c (+32, -4)
+		src/cups/backend_common.h (+21, -9)
+		src/cups/backend_kodak1400.c (+3, -9)
+		src/cups/backend_kodak605.c (+3, -9)
+		src/cups/backend_kodak6800.c (+3, -9)
+		src/cups/backend_magicard.c (+13, -3)
+		src/cups/backend_mitsu9550.c (+8, -19)
+		src/cups/backend_shinkos1245.c (+4, -14)
+		src/cups/backend_shinkos2145.c (+4, -10)
+		src/cups/backend_shinkos6145.c (+4, -9)
+		src/cups/backend_shinkos6245.c (+4, -9)
+
+	dyesub:  backends:  Synchronize with upstream
+
+	 * Minor bugfixes
+	 * Potential buffer overflow in magicard
+	 * Runtime control over verbosity
+	 * Centralized file reading code
+
+2018-12-23  <Robert Krawitz>	d4213cf2fb5460260f468f26eb2a598c979227d2
+
+	Lines: +8, -2
+	Files:	src/gimp2/print.c (+6, -0)
+		src/gutenprintui2/panel.c (+2, -2)
+
+	Allow bigger thumbnails for more modern displays
+
+2018-12-23  <Robert Krawitz>	e3904874099361c4956e4913316384853f02cd90
+
+	Lines: +1, -0
+	Files:	test/pcl-unprint.c (+1, -0)
+
+	Add missing newline to parse output.
+
+2018-12-15  <Solomon Peachy>	0879ccd7acb244ecb71174c33cafd7d8d8a9b4eb
+
+	Lines: +27, -3
+	Files:	src/main/print-dyesub.c (+27, -3)
+
+	dyesub: mitsu_p95: Allow LUT to be overridden via a RAW parameter.
+
+2018-11-25  <Cameron Nemo>	149e1e1e44d9e7466cf6defe179d703d878bbf11
+
+	Lines: +1, -1
+	Files:	src/xml/printers/check_duplicate_printers.test.c (+1, -1)
+
+	    src/xml/printers: remove assignment to read-only variable
+
+2018-11-22  <Robert Krawitz>	e3f485c6d75d4a07a927eb81ed75fe8789e32a58
+
+	Lines: +450, -2
+	Files:	NEWS (+17, -0)
+		src/xml/escp2/model/Makefile.am (+4, -1)
+		src/xml/escp2/model/model_133.xml (added +186)
+		src/xml/escp2/model/model_134.xml (added +186)
+		src/xml/escp2/model/model_135.xml (added +39)
+		src/xml/escp2/resolutions/c8x.xml (+8, -0)
+		src/xml/printers/escp2.xml (+10, -1)
+
+	Support Epson XP-960
+
+2018-11-20  <Solomon Peachy>	3fbdf7b2a82f44b0bcb7b8f4e67b05178bb73d23
+
+	Lines: +25, -13
+	Files:	src/cups/backend_common.c (+25, -13)
+
+	dyesub: backend:  Do not attempt to claim an IPP-capable USB interface.
+
+	(Most notably newer Canon SELPHY models)
+
+2018-11-20  <Robert Krawitz>	c33b4941ff383090a714cb5807465abf8527980c
+
+	Lines: +27, -9
+	Files:	test/parse-escp2.in (+27, -9)
+
+	Performance improvements
+
+2018-10-24  <Solomon Peachy>	d84764fbb5a83452ec747b9e08c1688bc865d02e
+
+	Lines: +54, -23
+	Files:	src/cups/backend_mitsu70x.c (+54, -23)
+
+	dyesub: backend:  More robust deck selection on the Mitsubishi CP-D707
+
+2018-10-21  <Solomon Peachy>	d328b60345d17378ae150b9ec002bc2d29994be1
+
+	Lines: +8, -0
+	Files:	src/main/print-dyesub.c (+8, -0)
+
+	dyesub:  Latest Kodak 305 firmware supports 5" media.
+
+	This enables support for 3.5x5", 5x5", 5x7", and 2* 3.5x5.
+
+2018-10-18  <Robert Krawitz>	c7dbe89720f51c8c4cff17caff9e6099f06ae965
+
+	Lines: +3, -1
+	Files:	doc/developer/Makefile.am (+3, -1)
+
+	Fix developer doc build on Arch Linux per Christian Wolf
+
+	https://sourceforge.net/p/gimp-print/patches/22/
+
+2018-10-16  <Robert Krawitz>	92d32a3a3ad00b7628af53ebb46e7074a2561abd
+
+	Lines: +6, -2
+	Files:	src/cups/Makefile.am (+6, -2)
+
+	Fix sequencing of CUPS PPD file building.
+
+	Based on https://sourceforge.net/p/gimp-print/patches/21/ but actually
+	implemented by partially reverting 47f8c68352e2a9eed44968ffceb4da7bc75faab4
+
+2018-10-13  <Robert Krawitz>	073f5d9f8b04ae54488f75d52eda6b0606509bb6
+
+	Lines: +6, -7
+	Files:	src/cups/test-rastertogutenprint.in (+6, -7)
+
+	Fix logic for no rotor
+
+2018-10-13  <Robert Krawitz>	7391e2fffc5bc9819c041fc7d9d4a00c7e294c86
+
+	Lines: +62, -42
+	Files:	src/cups/Makefile.am (+12, -12)
+		src/cups/cups-genppd.c (+3, -2)
+		src/cups/test-rastertogutenprint.in (+38, -28)
+		src/main/printers.c (+9, -0)
+
+	Speed up some of the CUPS testing
+
+2018-10-13  <Robert Krawitz>	0abde7ae4abbd4054afcf60c2df7a133328658cd
+
+	Lines: +2, -2
+	Files:	scripts/build-release (+2, -2)
+
+	Fix up log_top.
+
+2018-10-13  <Robert Krawitz>	31fac92e409bf6bf12457117da7ab1e6c0e1ea76
+
+	Lines: +9, -18
+	Files:	.gitignore (+9, -18)
+
+	Clean up ignore files
+
+2018-10-13  <Robert Krawitz>	104180fb9dfb77c7a095053b683a7fe8b57f0ef4
+
+	Lines: +1, -2
+	Files:	src/cups/cups-genppd.c (+1, -2)
+
+	Clean up warning
+
+2018-10-12  <Robert Krawitz>	3a788cd13435ea1da01b38cd8508f556b8ed4e52
+
+	Lines: +63, -0
+	Files:	container-build/Dockerfile (added +24)
+		container-build/run-build (added +39)
+
+	Experimental container build
+
+2018-10-11  <Robert Krawitz>	fa50c1026276865984d78d1dd4147fbeb8432c56
+
+	Lines: +3, -3
+	Files:	scripts/build-release (+3, -3)
+
+	Timestamp every line of output in CI mode
+
+2018-10-11  <Robert Krawitz>	96961a1523904b946cec28fe82274c9fcc47c6fb
+
+	Lines: +1, -1
+	Files:	src/cups/test-rastertogutenprint.in (+1, -1)
+
+	Fix fencepost
+
+2018-10-11  <Robert Krawitz>	8b41f707b79db47162df893ffa3107a55e14434e
+
+	Lines: +5, -3
+	Files:	src/testpattern/run-testpattern-2.test.in (+5, -3)
+
+	Avoid junk in the checksum output
+
+2018-10-10  <Robert Krawitz>	29504c144b5efa5a7994ac126d2e7ff3d6875bcd
+
+	Lines: +334, -344
+	Files:	autogen.sh (+3, -1)
+		scripts/autogen.sh (+95, -72)
+		scripts/build-release (+57, -64)
+		scripts/gversion.in (+6, -4)
+		scripts/wzpaq.in (+28, -36)
+		src/cups/test-ppds.test.in (+3, -3)
+		src/cups/test-rastertogutenprint.in (+62, -65)
+		src/cups/test-rastertogutenprint.test.in (+1, -1)
+		src/testpattern/compare-image-files.in (+6, -6)
+		src/testpattern/run-testpattern-1.test.in (+34, -49)
+		src/testpattern/run-testpattern-2.test.in (+17, -17)
+		test/run-testdither.test.in (+8, -10)
+		test/run-weavetest.test.in (+13, -15)
+		test/test-curve.test.in (+1, -1)
+
+	Cleanup a lot of shellcheck warnings (many of which were real bugs!)
+
+2018-10-09  <Robert Krawitz>	668d3ad96ee402623d8e2013aeac7a7340f966ca
+
+	Lines: +2, -2
+	Files:	src/testpattern/run-testpattern-2.test.in (+2, -2)
+
+	Shut up some of the tests.
+
+2018-10-09  <Robert Krawitz>	401fdb6970231436247f855c697d40e69f46fcf5
+
+	Lines: +4, -1
+	Files:	scripts/build-release (+4, -1)
+
+	Log the rotor information
+
+2018-10-08  <Robert Krawitz>	a108c3a0c682e113ceec27201982a5c33aac4ebe
+
+	Lines: +8, -5
+	Files:	.travis.yml (+6, -4)
+		scripts/travis/full (+1, -1)
+		scripts/travis/integration (+1, -0)
+
+	Use the rotor with the integration tests
+
+2018-10-08  <Robert Krawitz>	8a1bc31455b9ab6c03e2762cefd4a02715ee8c1c
+
+	Lines: +1, -1
+	Files:	scripts/travis/checksums (+0, -1)
+		scripts/travis/full (+1, -0)
+
+	Fix problem with the rotor
+
+2018-10-08  <Robert Krawitz>	778b0102185fa50206231df59612d50be2eb2c76
+
+	Lines: +16, -41
+	Files:	scripts/autogen.sh (+16, -41)
+
+	Hopefully the command checking is now fixed.
+
+2018-10-08  <Robert Krawitz>	20838c6c74238c2bd57855cb14c22018eec3bd30
+
+	Lines: +2, -2
+	Files:	scripts/autogen.sh (+2, -2)
+
+	Well, that didn't work...
+
+2018-10-08  <Robert Krawitz>	c162714134e81cf949c54f368a149a0de0ab79a4
+
+	Lines: +6, -2
+	Files:	scripts/autogen.sh (+6, -2)
+
+	One more try to figure out what's going on with the type command
+
+2018-10-08  <Robert Krawitz>	711aae373e8a3a0f2b1fafb07ce0baa9697132e5
+
+	Lines: +4, -0
+	Files:	scripts/autogen.sh (+4, -0)
+
+	Need more info...still
+
+2018-10-08  <Robert Krawitz>	362a13a201ae8e31ff29d4c207b19b2a5b7c518a
+
+	Lines: +4, -0
+	Files:	scripts/autogen.sh (+4, -0)
+
+	Yet again
+
+2018-10-08  <Robert Krawitz>	6017a03fa3abf03dde6504b189a708dcab7c3065
+
+	Lines: +3, -0
+	Files:	scripts/autogen.sh (+3, -0)
+
+	More
+
+2018-10-08  <Robert Krawitz>	b7d260d29eb28c1883befb87950b40e087a14a7d
+
+	Lines: +1, -0
+	Files:	scripts/autogen.sh (+1, -0)
+
+	Try again
+
+2018-10-08  <Robert Krawitz>	59d3026013c01e16192de4ba0ff72156c530ca81
+
+	Lines: +4, -0
+	Files:	scripts/autogen.sh (+4, -0)
+
+	Try to figure out why type -p ... isn't working
+
+2018-10-08  <Robert Krawitz>	293742e112a55b61332db2405c945036c8e655d6
+
+	Lines: +8, -3
+	Files:	scripts/autogen.sh (+8, -3)
+
+	Try to fix a few more errors in autogen.sh
+
+2018-10-07  <Robert Krawitz>	98dbffeb000b5a0055df101d19f03fa538aa2fbe
+
+	Lines: +34, -12
+	Files:	scripts/autogen.sh (+34, -12)
+
+	Fix some cases in early autogen
+
+2018-10-07  <Robert Krawitz>	db41114ef1c3b8aa5b5305ebc91a8413a2a7b033
+
+	Lines: +1, -1
+	Files:	scripts/travis/full (+1, -1)
+
+	Fix full script
+
+2018-10-07  <Robert Krawitz>	c096dd1a46ddb4a507c733f02178838d560acc42
+
+	Lines: +1, -1
+	Files:	src/cups/test-rastertogutenprint.in (+1, -1)
+
+	Use pdfjam if it *does* exist, not if it doesn't
+
+2018-10-07  <Robert Krawitz>	8662c19fc3d16496ecf8d0620018f9d010b55122
+
+	Lines: +30, -14
+	Files:	.travis.yml (+14, -14)
+		scripts/build-release (+6, -0)
+		scripts/travis/full (added +10)
+
+	Start work on adding full test
+
+2018-10-06  <Robert Krawitz>	38897ee2d28092e9441c7c206bd43e095741ad59
+
+	Lines: +0, -0
+	Files:	src/cups/cups-genppd.c (+0, -0)
+		src/cups/test-rastertogutenprint.in (+0, -0)
+
+	Fix trailing whitespace
+
+2018-10-06  <Robert Krawitz>	07070dc60505b6d3357625282a5aab405751791b
+
+	Lines: +4, -1
+	Files:	scripts/mkgitlog.in (+4, -1)
+
+	Remove all Travis-only commits from the change log.
+
+2018-10-06  <Robert Krawitz>	47f8c68352e2a9eed44968ffceb4da7bc75faab4
+
+	Lines: +107, -49
+	Files:	configure.ac (+7, -7)
+		scripts/build-release (+1, -1)
+		src/cups/Makefile.am (+9, -11)
+		src/cups/cups-genppd.c (+21, -2)
+		src/cups/test-rastertogutenprint.in (+17, -7)
+		src/cups/{test-ppds.in => test-ppds.test.in} (+10, -4)
+		src/cups/{test-rastertogutenprint.check.in => test-rastertogutenprint.test.in} (+2, -0)
+		src/testpattern/Makefile.am (+9, -8)
+		src/testpattern/{run-testpattern-1.in => run-testpattern-1.test.in} (+18, -0)
+		src/testpattern/{run-testpattern-2.check.in => run-testpattern-2.test.in} (+2, -0)
+		src/xml/printers/Makefile.am (+6, -6)
+		src/xml/printers/{check_duplicate_printers.c => check_duplicate_printers.test.c} (+0, -0)
+		test/Makefile.am (+5, -3)
+		test/{run-testdither.in => run-testdither.test.in} (+0, -0)
+		test/{run-weavetest.in => run-weavetest.test.in} (+0, -0)
+		test/{test-curve.in => test-curve.test.in} (+0, -0)
+
+	Allow all currently run tests to be split up
+	via STP_TEST_ROTOR and STP_TEST_ROTOR_CIRCUMFERENCE.
+
+	Sequence the CUPS and testpattern tests (that requires the test names
+	to end in .test).
+
+2018-10-06  <Robert Krawitz>	d3ea89fc3a2329383d889ebfb54496ac36a4b836
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	.
+
+2018-10-06  <Robert Krawitz>	7a25990e9fc0e69af7780fcc8af0f2b8feec691c
+
+	Lines: +6, -0
+	Files:	scripts/build-release (+6, -0)
+
+	Add run-check-fast target
+
+2018-09-30  <Robert Krawitz>	19f61588817d524cecda782324cabd17a93653df
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	Make Travis output easier to read
+
+2018-09-30  <Robert Krawitz>	43aced9c81f6c6a3a4452f3f9b3948688fee3e10
+
+	Lines: +0, -6
+	Files:	scripts/count-cpus (+0, -6)
+
+	Just use nproc; lscpu is too finicky
+
+2018-09-30  <Robert Krawitz>	64b55fb043759c804216f4bc9f526aa2b28e81ba
+
+	Lines: +2, -2
+	Files:	scripts/build-release (+1, -1)
+		scripts/count-cpus (+1, -1)
+
+	Fix lscpu use
+
+2018-09-30  <Robert Krawitz>	55bfb7af3282c6d79549c3ff93b891d16a57069f
+
+	Lines: +33, -69
+	Files:	.travis.yml (+25, -67)
+		scripts/build-release (+3, -2)
+		scripts/count-cpus (+5, -0)
+
+	More tweaks to travis configuration
+
+2018-09-30  <Robert Krawitz>	c74a90754d69b35bb7266cabc958c64646c4b1ac
+
+	Lines: +18, -9
+	Files:	scripts/build-release (+18, -9)
+
+	Log CPU and memory information
+
+2018-09-30  <Robert Krawitz>	1be346cecd8a5348bebbb8ffeb354933fc9689d9
+
+	Lines: +2, -2
+	Files:	Makefile.am (+2, -2)
+
+	Correct valgrind targets
+
+2018-09-30  <Solomon Peachy>	1b272d1712c5fee01e8ba6aeb63adf6cfc18f229
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub: Fix definition error for DS80DX "A4 Length" size @ 600dpi
+
+2018-09-30  <Robert Krawitz>	cbdc9e90526d886cbcd852bde05b4afa5736a578
+
+	Lines: +4, -0
+	Files:	scripts/build-release (+4, -0)
+
+	List the operations to be performed.
+
+2018-09-30  <Solomon Peachy>	fda93bae41aa772da84f50b9630b7c28d2513caf
+
+	Lines: +3, -3
+	Files:	src/cups/backend_dnpds40.c (+3, -3)
+
+	dyesub: backend: fix buffer overflow with ds620 6x9-div2
+
+2018-09-30  <Robert Krawitz>	02bd1dbe4726378721e47252d40e7ab63ff20fcb
+
+	Lines: +297, -7
+	Files:	.travis.yml (+263, -1)
+		scripts/build-release (+1, -0)
+		src/cups/test-rastertogutenprint.in (+14, -3)
+		src/testpattern/Checksums/sums.5.3.1.zpaq (+0, -0)
+		src/testpattern/compress-checksums.in (+8, -1)
+		src/testpattern/run-testpattern-2.in (+11, -2)
+
+	Add rotor to some tests to allow splitting more easily.
+	Generate checksums in Travis (don't currently save them).
+
+2018-09-30  <Robert Krawitz>	b6a60a06023f33452649365e7f590c3a3187264a
+
+	Lines: +1, -1
+	Files:	configure.ac (+1, -1)
+
+	Also need to fix gutenprintui2_current_interface.
+
+2018-09-30  <Solomon Peachy>	b74299fbe6b79ef95e974600811aebc381b736a0
+
+	Lines: +2, -2
+	Files:	src/cups/backend_mitsu9550.c (+2, -2)
+
+	dyesub: backend: Fix buffer overflow on mitsu9810 with matte on 5" media.
+
+2018-09-30  <Solomon Peachy>	e419422d63fa87eb3eb88c7fa305cadceea24538
+
+	Lines: +2, -2
+	Files:	src/cups/backend_mitsu9550.c (+2, -2)
+
+	dyesub: backend: Fix bad memory read in Mitsu 98xx gamma correction code.
+
+2018-09-29  <Robert Krawitz>	a4ecd8c7e9d8ad2a5293c65449313f2d1f226728
+
+	Lines: +3, -2
+	Files:	scripts/build-release (+3, -2)
+
+	Complete all git checks even if one fails
+
+2018-09-29  <Robert Krawitz>	42b6fe0b6f9271b382a2ad3fcb2c31e35b182406
+
+	Lines: +1, -1
+	Files:	configure.ac (+1, -1)
+
+	Need to increment current_interface as well as binary_age.
+
+2018-09-29  <Solomon Peachy>	e0187c117fdefa8cf8f13cbe9180cf78c40d7b9f
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Fix usercomment on Mitsubishi P95D
+
+2018-09-29  <Solomon Peachy>	78cbcb8694e4545cc947f63cc8fe6fe68513d437
+
+	Lines: +3, -4
+	Files:	src/cups/backend_sonyupdr150.c (+3, -4)
+
+	dyesub: backend: fix memory overflow in sony up-dr backend.
+
+	(only hit on 8x6-div2)
+
+2018-09-28  <Solomon Peachy>	735c7f11908629bff87ea6336dc8a73556e84ea7
+
+	Lines: +4, -9
+	Files:	src/cups/backend_dnpds40.c (+4, -9)
+
+	dyesub: backend:  Fix handling of CW-01 334 DPI jobs.
+
+2018-09-28  <Solomon Peachy>	635314d0ea8a3472270baea22d831f21f4873a2b
+
+	Lines: +3, -2
+	Files:	src/cups/backend_mitsu70x.c (+3, -2)
+
+	dyesub: backend:  fix mis-definition of ask300 and mitsu d707
+
+2018-09-28  <Solomon Peachy>	c94bf5fd4be2684502fe263db6d0ee8ea5255128
+
+	Lines: +1, -1
+	Files:	src/cups/backend_common.c (+1, -1)
+
+	backend:  Fix a compile warning that popped up on Debian 9
+
+2018-09-26  <Solomon Peachy>	1262e21aa3c7f3bdcc81b677006201c45391e1fb
+
+	Lines: +9, -7
+	Files:	src/cups/backend_mitsu9550.c (+9, -7)
+
+	dyesub: backend:  Fix a nasty buffer overflow bug in the Mitsu 9810 matte code.
+
+2018-09-26  <Solomon Peachy>	ad88db3d5dd2911c4b6141dd04847e13d596f304
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Fix desciptive text of the Mitsu P93D sharpening option.
+
+2018-09-26  <Robert Krawitz>	1fd59eb1025989d02610e8068957ff92e93c7f93
+
+	Lines: +4, -2
+	Files:	Makefile.am (+4, -2)
+
+	Put config.summary in lib rather than share, as the output is
+
+	arch-specific.
+
+2018-09-25  <Robert Krawitz>	eb871e01fca4fd8b013d1f72d77e0a208fda7772
+
+	Lines: +10, -41
+	Files:	Makefile.am (+10, -41)
+
+	Simplify the check rules.
+
+2018-09-25  <Robert Krawitz>	93c28c1553cec8004e4cba81efcfba551c9e3725
+
+	Lines: +1, -1
+	Files:	Makefile.am (+1, -1)
+
+	Change the build string for snapshots.
+
+2018-09-25  <Solomon Peachy>	1a61f50017b14a96ab25ef1715db77a5319424ec
+
+	Lines: +4, -4
+	Files:	src/cups/backend_common.c (+4, -4)
+
+	dyesub: backend: fix potential memory overflow in usb enumeration code.
+
+2018-09-25  <Solomon Peachy>	ba28dc0a48fe8ba31e8de2aba13395944e069685
+
+	Lines: +2, -2
+	Files:	src/cups/backend_sonyupdr150.c (+2, -2)
+
+	dyesub: backend: fix definition for sony up-cr10l
+
+2018-09-25  <Robert Krawitz>	442f92221e1ca6478413c900768dba014fdc758b
+
+	Lines: +1, -2
+	Files:	src/main/module.c (+1, -2)
+
+	Fix two memory leaks in module code
+
+2018-09-25  <Robert Krawitz>	77e56aad5c116ec782621bbb4063c3002764c351
+
+	Lines: +10, -6
+	Files:	scripts/mkgitlog.in (+10, -6)
+
+	Ignore change sets that only touch .travis.yml
+
+2018-09-25  <Robert Krawitz>	2640b6255fe591562a363b87526597b239a5402c
+
+	Lines: +6, -5
+	Files:	.travis.yml (+4, -3)
+		scripts/build-release (+2, -2)
+
+	Add a test run with --disable-static
+
+2018-09-25  <Robert Krawitz>	fd6266335de5dcbfce16b90215094a2d04f59df8
+
+	Lines: +2, -2
+	Files:	configure.ac (+1, -1)
+		src/cups/gutenprint.c (+1, -1)
+
+	Fix format warning
+
+2018-09-23  <Solomon Peachy>	7cb0a0a08068cdcfe7ba0ec95a415bc5b78c951b
+
+	Lines: +0, -1
+	Files:	src/main/print-dyesub.c (+0, -1)
+
+	dyesub:  Fix output regression on the Kodak 605.
+
+2018-09-23  <Robert Krawitz>	4a3084f1e14db8618d1695918ebaecead2054347
+
+	Lines: +22, -4
+	Files:	Makefile.am (+5, -0)
+		configure.ac (+17, -4)
+
+	Log the configure arguments, and install the config.summary
 
 2018-09-22  <Robert Krawitz>	2039aa5e50e75713c5c5598e830b58ccbf0bb339
 
@@ -289,40 +1749,12 @@ Name: gutenprint-5_3_1
 
 	Fixed missing words.
 
-2018-09-05  <Robert Krawitz>	edcd68c71f7228c8e13fd5b69be178d7846d57ab
-
-	Lines: +1, -1
-	Files:	.travis.yml (+1, -1)
-
-	Remove duplicative run_valgrind_fast.
-
 2018-09-05  <Robert Krawitz>	d3a3b3ba404ed3fd61869ba05134ac45a937b0ab
 
 	Lines: +1, -3
 	Files:	src/cups/test-rastertogutenprint.in (+1, -3)
 
 	Cut down some on the output noise.
-
-2018-09-04  <Robert Krawitz>	288345eff30dce2333bee505c4ce8539356cea5c
-
-	Lines: +2, -0
-	Files:	.travis.yml (+2, -0)
-
-	Also need cups-filters-core-drivers for testing rastertogutenprint
-
-2018-09-04  <Robert Krawitz>	31e9127d16099d7ff242e3830b4af4fb48072f61
-
-	Lines: +7, -1
-	Files:	.travis.yml (+7, -1)
-
-	More tweaks for travis
-
-2018-09-03  <Robert Krawitz>	af0ffb9ec7b3ac2f60f121874136b12fbfc24b7c
-
-	Lines: +2, -0
-	Files:	.travis.yml (+2, -0)
-
-	Add libusb and libgimp for travis
 
 2018-09-03  <Robert Krawitz>	67b6c6892ab7cea36a895ccfba4b4b97a2cf93e4
 
@@ -435,20 +1867,6 @@ Name: gutenprint-5_3_1
 
 	autoconf uses /bin/sh for bash, but some scripts really need bash
 
-2018-09-02  <Robert Krawitz>	ac79fecfed974cf7bbcf6152a49665b26b33580b
-
-	Lines: +1, -1
-	Files:	.travis.yml (+1, -1)
-
-	Some of the test commands don't produce output very often.
-
-2018-09-02  <Robert Krawitz>	33fa779d66e25bb18445dc3b4375c1b0ff5e1ec8
-
-	Lines: +5, -0
-	Files:	.travis.yml (+5, -0)
-
-	More dependencies
-
 2018-09-02  <Robert Krawitz>	40a41392604638fd40380c1512041a191ab51986
 
 	Lines: +1, -8
@@ -458,13 +1876,6 @@ Name: gutenprint-5_3_1
 	AM_GNU_GETTEXT_REQUIRE_VERSION doesn't work everywhere.
 
 	Only check for tag after build.
-
-2018-09-02  <Robert Krawitz>	d498da93f7b6f938cd812379721a2b5819d3342a
-
-	Lines: +3, -0
-	Files:	.travis.yml (+3, -0)
-
-	More missing packages
 
 2018-09-02  <Robert Krawitz>	e71d47dc15fa000664f2821f6f3c74deded3ad2a
 
@@ -488,27 +1899,6 @@ Name: gutenprint-5_3_1
 	Files:	scripts/build-release (+3, -3)
 
 	Another silly typo
-
-2018-09-02  <Robert Krawitz>	b4b9c33232a94f2f533d8d5063069a2721ff8a0d
-
-	Lines: +1, -1
-	Files:	.travis.yml (+1, -1)
-
-	Fix script command
-
-2018-09-02  <Robert Krawitz>	c5766ba31cc81df0b3b2a3442058537ac4e2e44e
-
-	Lines: +1, -1
-	Files:	.travis.yml (+1, -1)
-
-	Fix typo
-
-2018-09-02  <Robert Krawitz>	7b3d49fe90d03d39c138fb8784d59a1a04f2642d
-
-	Lines: +1, -1
-	Files:	.travis.yml (+1, -1)
-
-	Fix package name for xz
 
 2018-09-02  <Robert Krawitz>	b9b010e701b77c313314bf2717f14da8e56a71f8
 
@@ -2307,10 +3697,6 @@ Name: gutenprint-5_3_1
 
 	Cleanup output for simplified PPD files
 
-2017-12-30  <Robert Krawitz>	794eea6feb92dc03bfc369b8f205da1bb0baeedf
-
-	Merge branch 'master' of ssh://git.code.sf.net/p/gimp-print/source
-
 2017-12-30  <Robert Krawitz>	cb7abc4d5df85bd3c9cce30d55698791afb1b2d2
 
 	Lines: +243, -246
@@ -3614,10 +5000,6 @@ Name: gutenprint-5_3_1
 
 	rename rastertoprinter.c to rastertogutenprint.c to correspond with binary
 
-2017-11-01  <Robert Krawitz>	ccc7c9512f363d24998ef186f0f0dbd2d8caca0a
-
-	Merge branch 'new-papersize-api'
-
 2017-11-01  <Robert Krawitz>	7861c60bf13bb5d9666eb5153dd0b6b74e307a18
 
 	Lines: +0, -0
@@ -3876,10 +5258,6 @@ Name: gutenprint-5_3_0-pre1
 
 	5.3.0-pre1 release
 
-2017-10-06  <Robert Krawitz>	c7eaff5993c137692e74a0a6658c69fb36358d1a
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-10-03  <Solomon Peachy>	7dc22e1172ab37fbda1c683951e724bd9fd11fbc
 
 	Lines: +5, -3
@@ -3893,10 +5271,6 @@ Name: gutenprint-5_3_0-pre1
 	Files:	src/cups/blacklist (+4, -0)
 
 	dyesub: backend:  Blacklist the Fujifilm ASK-300 too
-
-2017-09-24  <Robert Krawitz>	2f72cdfe48ae04f0ebba4d3d6a8c17d629ad00fc
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-09-23  <Robert Krawitz>	f876a6a7e0e03dccfe414d3f7cc3a64c4d8db8a7
 
@@ -4018,10 +5392,6 @@ Name: gutenprint-5_3_0-pre1
 
 	backend:  canonselphy:  Fix nasty regression with ES3/ES30/ES40/CP790
 
-2017-07-17  <Robert Krawitz>	6c040b1d04b3421d38d3345ac468e2ac31c72f97
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 ===============================================================================
 Name: gutenprint-5_2_13
 
@@ -4050,10 +5420,6 @@ Name: gutenprint-5_2_13
 	Files:	src/testpattern/run-testpattern-2.in (+125, -122)
 
 	modernize testpattern
-
-2017-07-16  <Robert Krawitz>	4160ba36c373ed05bdd4bf50341886cc3335d5ab
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-07-13  <Gernot Hassenpflug>	d3784bd141c31a32c004bea97cb9fca993203e73
 
@@ -4152,10 +5518,6 @@ Name: gutenprint-5_2_13
 		src/main/printers.c (+0, -0)
 
 	Clean up stray whitespace
-
-2017-07-04  <Robert Krawitz>	598ced90d267c27085459acd490a7e56a61d88e0
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-07-04  <Robert Krawitz>	6a79141b9c54110a24af25b4e8efa1052bb04f65
 
@@ -4332,10 +5694,6 @@ Name: gutenprint-5_2_13
 
 	Added individual instances of Canon G1000, G2000, G3000, G4000 series
 
-2017-07-03  <Robert Krawitz>	08c02fd276b4afec2c030fd6b43c936d6ee21c23
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-07-04  <Gernot Hassenpflug>	b379741334b24f956f639edc7edd7ab3cd8a2052
 
 	Lines: +46, -0
@@ -4400,10 +5758,6 @@ Name: gutenprint-5_2_13
 		src/xml/printers.xml (+11, -0)
 
 	Added experimental support for Canon MAXIFY iB4100 series. Additional papersizes added to gutenprint: Oficio, Brazil Oficio, Mexico Oficio, Legal (Indai). Additionally, added iB40190 instance to iB4000 series.
-
-2017-07-01  <Robert Krawitz>	2eb0403989293abafa1c0ebf90ab76752c0c8207
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-07-02  <Gernot Hassenpflug>	98d61cecf5cef470bcf341042a8cf4868cc3bd57
 
@@ -4516,10 +5870,6 @@ Name: gutenprint-5_2_13
 
 	Added experimental support for Canon PIXMA E470 series
 
-2017-05-28  <Robert Krawitz>	fb920fa2962d2f7969812258e31def6034548b18
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-05-28  <Robert Krawitz>	6d2da8cdc0719749d6e6fda63ec9882e20ae99e2
 
 	Lines: +8, -1
@@ -4537,10 +5887,6 @@ Name: gutenprint-5_2_13
 
 	Minimize differences against the mainline.
 
-2017-05-27  <Robert Krawitz>	a57f728f8306ddffb9292f1c2d8333fbafbd9884
-
-	Merge branch 'master' into units-branch
-
 2017-05-27  <Robert Krawitz>	c0d801ff4a8c00116cef6beba8ef7338c94ab613
 
 	Lines: +296, -306
@@ -4552,10 +5898,6 @@ Name: gutenprint-5_2_13
 
 	Minimize differences from 5.3 WIP
 
-2017-05-23  <Robert Krawitz>	82a2e1cff60a5047ee9f49b48b6b897254c64b3d
-
-	Merge branch 'master' into units-branch
-
 ===============================================================================
 Name: gutenprint-5_2_13-pre1
 
@@ -4565,10 +5907,6 @@ Name: gutenprint-5_2_13-pre1
 	Files:	src/testpattern/Checksums/sums.5.2.13-pre1.lrz (added +0)
 
 	5.2.13-pre1 checksums
-
-2017-05-21  <Robert Krawitz>	b1dc7a3c59124a2f58d3cbadab814170b5146460
-
-	Merge branch 'master' into units-branch
 
 2017-05-21  <Robert Krawitz>	7ea84ee0a63b646fca9937ae127988abfe85bff8
 
@@ -4686,10 +6024,6 @@ Name: gutenprint-5_2_13-pre1
 
 	Corrected typo in new modes for Canon Pro9500
 
-2017-04-16  <Robert Krawitz>	e489ab41e1a24a5dcad9e6b4407e8e6f39788561
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-04-16  <Robert Krawitz>	0f7bbf9a64c054bca77e3898252ea62a7c8daec5
 
 	Lines: +31, -12
@@ -4731,10 +6065,6 @@ Name: gutenprint-5_2_13-pre1
 
 	Add Datamax-O'Neil H Class series
 
-2017-04-12  <Robert Krawitz>	5c77e08833c31a89f46ef1f7baa27377dcbb67f5
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-04-12  <Solomon Peachy>	242205a5bdd460a575d90b853a68ecd2e26c93db
 
 	Lines: +2, -1
@@ -4748,10 +6078,6 @@ Name: gutenprint-5_2_13-pre1
 	Files:	src/cups/backend_canonselphy.c (+15, -60)
 
 	dyesub: backend: canonselphy:  Handle presence of a battery!
-
-2017-04-09  <Robert Krawitz>	1263e225a22e9c7f10cdd779e7dd18d60f722961
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-04-09  <Robert Krawitz>	e00b154368453a9993dc1546949ead666d365c8c
 
@@ -4772,10 +6098,6 @@ Name: gutenprint-5_2_13-pre1
 		src/testpattern/Makefile.am (+7, -3)
 
 	Store the git version in the build tree
-
-2017-04-08  <Solomon Peachy>	a1d838144248b84a6058c988126c949b015c6106
-
-	Merge branch 'master' into units-branch
 
 2017-04-08  <Solomon Peachy>	909a8bc8a73089a7cf914088f679df1a9c2e16e6
 
@@ -4898,20 +6220,12 @@ Name: gutenprint-5_2_13-pre1
 
 	Backend, blacklist, and an IEEE1284 ID too.  :)
 
-2017-03-26  <Robert Krawitz>	8c0b573a297f560cbcb77830708b20240f0105ad
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-03-27  <Gernot Hassenpflug>	f9078b1c6b6f529ba1628baafb591a4b14d94975
 
 	Lines: +1, -15
 	Files:	NEWS (+1, -15)
 
 	Updated Canon driver news
-
-2017-03-19  <Robert Krawitz>	efd017f79e033f412948d106335b1f884fa849f6
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-03-19  <Robert Krawitz>	2a0a8cf51a68538768897116d16a49846b3596e8
 
@@ -4950,20 +6264,12 @@ Name: gutenprint-5_2_13-pre1
 	With this commit (and the correspinding library) the print quality is on
 	par with the Official Windows and OSX drivers.  Huzzah!
 
-2017-03-19  <Robert Krawitz>	9eff5c5dc75e845a722bf9e17dbd1f49be31d9e2
-
-	Merge remote-tracking branch 'origin/master' into units-branch
-
 2017-03-19  <Robert Krawitz>	0dc01b8b687ccff31b716350b6cff417a00740f2
 
 	Lines: +1, -1
 	Files:	src/cups/test-rastertogutenprint.in (+1, -1)
 
 	Get rastertogutenprint version correctly.
-
-2017-03-19  <Robert Krawitz>	bbbeddcff0bb1803c1f843a258fbbb225b77f8f7
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-03-19  <Robert Krawitz>	1b0ea8a5d69c59aa84983d9bd5d078cf14d4b51c
 
@@ -4972,10 +6278,6 @@ Name: gutenprint-5_2_13-pre1
 		src/xml/printers.xml (+1, -0)
 
 	Add Epson Artisan 1430
-
-2017-03-18  <Robert Krawitz>	b48d390ab0613b0eba7d90a33ded9a63a1fd72a8
-
-	Merge remote-tracking branch 'origin/master' into units-branch
 
 2017-03-18  <Robert Krawitz>	ac8b6927ebfd066bad17c11ded75b8b9b6884fae
 
@@ -5128,10 +6430,6 @@ Name: gutenprint-5_2_13-pre1
 
 	Minor doc updates.  Mainly the version tag.
 
-2017-03-06  <Robert Krawitz>	af3387573a8e15fe7cb6cc776a5d2a94f3362ecd
-
-	Merge branch 'master' into units-branch
-
 2017-03-06  <Robert Krawitz>	464c6f6367ce049c0f0a783c1eebd232556181f4
 
 	Lines: +195, -75
@@ -5180,10 +6478,6 @@ Name: gutenprint-5_2_13-pre1
 
 	Add optional round mode to testpattern to round down to points
 	(for testing compatibility against integer-based code)
-
-2017-03-05  <Robert Krawitz>	36b677ae288392c8d5884ceb133342decef5a734
-
-	Merge branch 'master' into units-branch
 
 2017-03-05  <Robert Krawitz>	cde254a5f42711587b3bc81d32ced09e8ba39028
 
@@ -5601,10 +6895,6 @@ Name: gutenprint-5_2_12
 	Files:	src/main/print-dpl.c (+7, -2)
 
 	Fix stack overwrite.
-
-2016-12-30  <Robert Krawitz>	3969ac57c0b4d63e0cd895ffa5f98bbf48e62057
-
-	Merge branch 'master' of ssh://git.code.sf.net/p/gimp-print/source
 
 2016-12-29  <Solomon Peachy>	207c928e122e352eba71e8abd5ffd4b67dc6d2c3
 
