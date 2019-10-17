@@ -4,10 +4,10 @@
 #
 Name     : gutenprint
 Version  : 5.3.3
-Release  : 6
+Release  : 7
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.3/gutenprint-5.3.3.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.3/gutenprint-5.3.3.tar.xz
-Summary  : Top quality printer drivers for POSIX systems
+Summary  : Gutenprint Top Quality Printer Drivers
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: gutenprint-bin = %{version}-%{release}
@@ -21,6 +21,7 @@ BuildRequires : cups
 BuildRequires : cups-dev
 BuildRequires : cups-filters
 BuildRequires : cups-filters-dev
+BuildRequires : dialog
 BuildRequires : doxygen
 BuildRequires : e2fsprogs-dev
 BuildRequires : flex
@@ -63,7 +64,6 @@ Requires: gutenprint-lib = %{version}-%{release}
 Requires: gutenprint-bin = %{version}-%{release}
 Requires: gutenprint-data = %{version}-%{release}
 Provides: gutenprint-devel = %{version}-%{release}
-Requires: gutenprint = %{version}-%{release}
 Requires: gutenprint = %{version}-%{release}
 
 %description dev
@@ -112,8 +112,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566836456
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1571350826
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -126,11 +125,11 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -f
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1566836456
+export SOURCE_DATE_EPOCH=1571350826
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
-cp COPYING %{buildroot}/usr/share/package-licenses/gutenprint/COPYING
-cp src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/src_cups_COPYING
+cp %{_builddir}/gutenprint-5.3.3/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/gutenprint-5.3.3/src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/84311ac1a073d7024b8d04c36fb9365fdabdc5e6
 %make_install
 %find_lang gutenprint
 
@@ -564,8 +563,8 @@ cp src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/src_cups_
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/gutenprint/COPYING
-/usr/share/package-licenses/gutenprint/src_cups_COPYING
+/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+/usr/share/package-licenses/gutenprint/84311ac1a073d7024b8d04c36fb9365fdabdc5e6
 
 %files man
 %defattr(0644,root,root,0755)
