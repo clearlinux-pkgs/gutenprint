@@ -4,10 +4,10 @@
 #
 Name     : gutenprint
 Version  : 5.3.3
-Release  : 8
+Release  : 9
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.3/gutenprint-5.3.3.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.3/gutenprint-5.3.3.tar.xz
-Summary  : Gutenprint Top Quality Printer Drivers
+Summary  : Top quality printer drivers for POSIX systems
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: gutenprint-bin = %{version}-%{release}
@@ -65,9 +65,18 @@ Requires: gutenprint-bin = %{version}-%{release}
 Requires: gutenprint-data = %{version}-%{release}
 Provides: gutenprint-devel = %{version}-%{release}
 Requires: gutenprint = %{version}-%{release}
+Requires: gutenprint = %{version}-%{release}
 
 %description dev
 dev components for the gutenprint package.
+
+
+%package extras
+Summary: extras components for the gutenprint package.
+Group: Default
+
+%description extras
+extras components for the gutenprint package.
 
 
 %package lib
@@ -106,13 +115,15 @@ man components for the gutenprint package.
 
 %prep
 %setup -q -n gutenprint-5.3.3
+cd %{_builddir}/gutenprint-5.3.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571350826
+export SOURCE_DATE_EPOCH=1579105995
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -125,7 +136,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -f
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1571350826
+export SOURCE_DATE_EPOCH=1579105995
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
 cp %{_builddir}/gutenprint-5.3.3/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
@@ -147,7 +158,6 @@ cp %{_builddir}/gutenprint-5.3.3/src/cups/COPYING %{buildroot}/usr/share/package
 %defattr(-,root,root,-)
 /usr/bin/cups-calibrate
 /usr/bin/cups-genppd.5.3
-/usr/bin/cups-genppdupdate
 /usr/bin/escputil
 /usr/bin/testpattern
 
@@ -544,6 +554,10 @@ cp %{_builddir}/gutenprint-5.3.3/src/cups/COPYING %{buildroot}/usr/share/package
 /usr/lib64/libgutenprintui2.so
 /usr/lib64/pkgconfig/gutenprint.pc
 /usr/lib64/pkgconfig/gutenprintui2.pc
+
+%files extras
+%defattr(-,root,root,-)
+/usr/bin/cups-genppdupdate
 
 %files lib
 %defattr(-,root,root,-)
