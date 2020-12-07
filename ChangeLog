@@ -1,3 +1,1390 @@
+===============================================================================
+Name: gutenprint-5_3_4
+
+2020-12-06  <Robert Krawitz>	7d80bfebcc3309fe0b6593184fd84f5c178cc60c
+
+	Lines: +0, -0
+	Files:	src/testpattern/Checksums/sums.gutenprint-5.3.4.zpaq (added +0)
+
+	Gutenprint gutenprint-5.3.4 release
+
+2020-12-06  <Robert Krawitz>	fc5bfc8ceebae8a33049e4e9cfc40f5b1f8b0cf0
+
+	Lines: +68, -32
+	Files:	NEWS (+36, -0)
+		src/xml/printers/pcl.xml (+32, -32)
+
+	Fix margins on Brother laser printers
+
+2020-12-06  <Robert Krawitz>	e0920170726bafd5a39b716d18ae98916d1399e9
+
+	Lines: +2, -2
+	Files:	scripts/snapstamp (+2, -2)
+
+	Fix for /bin/sh
+
+2020-12-06  <Solomon Peachy>	2228f2b6fde0651b0e786c28113bdfb49fd8335b
+
+	Lines: +3, -3
+	Files:	src/main/print-dyesub.c (+3, -3)
+
+	dyesub:  Turns out the CP30D has *seven* levels of sharpening, plus off.
+
+2020-12-06  <Solomon Peachy>	8c2279baeb1f424793c441f6c4a65df02eb5830a
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub: Mitsubishi CP30D only has 7 levels of sharpening (not 10)
+
+	(The backend doesn't implement it yet, so this is largely moot..)
+
+2020-12-06  <Solomon Peachy>	3dcaab30c4c801eb134fcd75799a95246c069abe
+
+	Lines: +14, -3
+	Files:	src/cups/backend_mitsu9550.c (+14, -3)
+
+	dyesub: backend:  media type detection for the Mitsubishi CP30D family
+
+2020-12-06  <Solomon Peachy>	af1b1bc8ca503de0d807eacee5aa09c1a8e58039
+
+	Lines: +1, -1
+	Files:	src/main/print-canon.c (+1, -1)
+
+	Fix a compile warning that broke make-distcheck on Fedora 33 (GCC 10.2.1)
+
+	In function ‘canon_get_current_mode’,
+	    inlined from ‘canon_describe_resolution’ at print-canon.c:2777:10:
+	print-canon.c:666:5: warning: ‘%s’ directive argument is null [-Wformat-overflow=]
+	  666 |     stp_dprintf(STP_DBG_CANON, v,"DEBUG: Gutenprint: current mode is '%s'\n",resolution);
+	      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2020-12-05  <Solomon Peachy>	5bdd5690456b18d53e9799c1c57694e081b9dcc8
+
+	Lines: +4, -4
+	Files:	NEWS (+4, -4)
+
+	NEWS:  Mitsubishi CP30D series is no longer experimental.
+
+2020-12-05  <Solomon Peachy>	79cdce62426a0d15308df0245b8164f6d2e777e3
+
+	Lines: +1, -1
+	Files:	src/cups/backend_mitsu9550.c (+1, -1)
+
+	dyesub: backend:  Compile fix that I accidently left out.
+
+2020-12-05  <Solomon Peachy>	0571e71d4651c9b902db05a5d084bea91b6fe228
+
+	Lines: +444, -223
+	Files:	src/cups/backend_mitsu.c (+49, -1)
+		src/cups/backend_mitsu.h (+21, -4)
+		src/cups/backend_mitsu70x.c (+1, -1)
+		src/cups/backend_mitsu9550.c (+369, -216)
+		src/cups/backend_mitsud90.c (+1, -1)
+		src/cups/blacklist (+3, -0)
+
+	dyesub: backend:  Proper support for the Mitsubishi CP30D
+
+	(along with multiple bugfixes for the Mitsubishi CP9xxx family)
+
+2020-12-05  <Solomon Peachy>	c60c3a39dfaa1d4b658d14974602ea2d86548ef8
+
+	Lines: +110, -8
+	Files:	NEWS (+2, -1)
+		src/main/print-dyesub.c (+108, -7)
+
+	dyesub:  Many fixes and enhancments for the Mitsubishi CP30 MedSci family.
+
+	   (Backend still pending)
+
+2020-12-04  <Solomon Peachy>	9f6925f65eae17aea121ec1245e1cba19f371afc
+
+	Lines: +1, -1
+	Files:	src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Add IEEE1284 ID for Mitsubishi CP30D series
+
+2020-11-29  <Solomon Peachy>	0e18d1613976651d46a76e9c1cc10c7b56e18dac
+
+	Lines: +159, -60
+	Files:	src/cups/backend_sonyupd.c (+159, -60)
+
+	dyesub: backend: Major bugfixes for Sony UP-DR200
+
+2020-11-08  <Solomon Peachy>	c30e9d42d4a79f1b488d836a3d0f4293bfe60983
+
+	Lines: +74, -19
+	Files:	src/cups/backend_sonyupdneo.c (+74, -19)
+
+	dyesub: backend:  Fix copy generation in the sonyupdneo backend
+
+2020-11-07  <Solomon Peachy>	c59eaeca9a5bc94818eb58b748cb51e5bad71e99
+
+	Lines: +90, -55
+	Files:	src/cups/backend_sonyupdneo.c (+90, -55)
+
+	dyesub: backend:  Fix regressions in the sonyupdneo backend
+
+2020-11-07  <Solomon Peachy>	ce65d8681927defee23f164751b170939e9c8f99
+
+	Lines: +707, -852
+	Files:	src/cups/backend_canonselphy.c (+31, -40)
+		src/cups/backend_canonselphyneo.c (+18, -28)
+		src/cups/backend_common.c (+72, -70)
+		src/cups/backend_common.h (+29, -24)
+		src/cups/backend_dnpds40.c (+46, -58)
+		src/cups/backend_hiti.c (+34, -96)
+		src/cups/backend_kodak1400.c (+26, -37)
+		src/cups/backend_kodak605.c (+10, -15)
+		src/cups/backend_kodak6800.c (+16, -29)
+		src/cups/backend_magicard.c (+17, -26)
+		src/cups/backend_mitsu.c (+3, -0)
+		src/cups/backend_mitsu.h (+3, -1)
+		src/cups/backend_mitsu70x.c (+52, -63)
+		src/cups/backend_mitsu9550.c (+45, -54)
+		src/cups/backend_mitsud90.c (+42, -53)
+		src/cups/backend_mitsup95d.c (+29, -37)
+		src/cups/backend_shinkos1245.c (+15, -28)
+		src/cups/backend_shinkos2145.c (+12, -20)
+		src/cups/backend_shinkos6145.c (+42, -39)
+		src/cups/backend_shinkos6245.c (+16, -22)
+		src/cups/backend_sinfonia.c (+10, -14)
+		src/cups/backend_sinfonia.h (+4, -11)
+		src/cups/backend_sonyupd.c (+22, -30)
+		src/cups/backend_sonyupdneo.c (+110, -57)
+		src/cups/blacklist (+3, -0)
+
+	dyesub:  Backend resync.
+
+	 * Many bugfixes for sonyupdneo family
+	 * Significant internal changes:
+	    * Logging/status messages can go to non-stderr
+	    * Standardized "connection" info across all families
+
+2020-11-07  <Solomon Peachy>	80e35975d31e731c369a059bb7709f0dd0dd91cf
+
+	Lines: +32, -5
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+29, -4)
+		src/xml/printers/dyesub.xml (+2, -1)
+
+	dyesub:  Major bugfixes for the Sony UP-D898 family
+
+	It's now generally working
+
+2020-11-07  <Solomon Peachy>	f2e9b77bbe0b529cf2882cb256aa2dad4c63d201
+
+	Lines: +8, -29
+	Files:	src/main/print-dyesub.c (+8, -29)
+
+	dyesub:  bugfixes for Sony UP-CR20L and UP-D898 series
+
+2020-10-22  <Solomon Peachy>	3ca525ba8f0552aa2958484fc4a54a424c0abf20
+
+	Lines: +45, -5
+	Files:	src/cups/backend_dnpds40.c (+42, -5)
+		src/main/print-dyesub.c (+3, -0)
+
+	dyesub: dnp:  Add partial-matte mode support to the DS620, DS820, and QW410
+
+2020-09-09  <Solomon Peachy>	5a6b8257ad404b46ed3d4c95abd318992ab943f5
+
+	Lines: +10, -1
+	Files:	src/cups/backend_dnpds40.c (+10, -1)
+
+	dyesub: backend: dnp-ds820: FW 1.07 is needed for the A4x6 print size.
+
+2020-09-01  <Solomon Peachy>	5f32adfb097364f539e10f70090355c722e80e7c
+
+	Lines: +71, -24
+	Files:	src/cups/backend_shinkos6145.c (+69, -22)
+		src/cups/backend_sinfonia.h (+2, -2)
+
+	dyesub: backend: Fixes for Sinfoina S2245 and S6145-5A
+
+2020-09-01  <Solomon Peachy>	e6f59f651cbd65adb6f58ecff74421324010cdcd
+
+	Lines: +16, -5
+	Files:	src/cups/backend_dnpds40.c (+16, -5)
+
+	dyesub: backend:  Fix print combining on the DS820 with A4 media
+
+2020-08-23  <Solomon Peachy>	042f398215443efc426a51d2a080d6c03e3a3a24
+
+	Lines: +5, -7
+	Files:	src/main/print-dyesub.c (+5, -7)
+
+	dyesub:  chc-s2245: Fix problems with 8x6-div4 and 6x6 prints
+
+2020-08-04  <Solomon Peachy>	9f19b1cb591da70152c2f5852e943a2db62ed216
+
+	Lines: +683, -385
+	Files:	NEWS (+1, -1)
+		src/cups/backend_shinkos6145.c (+589, -311)
+		src/cups/backend_shinkos6245.c (+9, -57)
+		src/cups/backend_sinfonia.c (+10, -8)
+		src/cups/backend_sinfonia.h (+73, -7)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub: backend:  Add support for the CHC-S2245
+
+	...mark it as no longer experimental!
+
+	(Not all size/option combos have been tested.  Further patches are likely)
+
+2020-08-04  <Solomon Peachy>	35794012f30d035f179292a567d3fbcaf6fa43b8
+
+	Lines: +9, -1
+	Files:	src/main/print-dyesub.c (+9, -1)
+
+	dyesub:  Fix CHC-S2245 overcoat options
+
+2020-08-04  <Solomon Peachy>	384d8ee53bc1f6eff1ed8da8855d9ddb5d0262b9
+
+	Lines: +1, -1
+	Files:	src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Fix typo in CHC-S2245 model name.
+
+2020-08-02  <Solomon Peachy>	84a0377c1fb6b2cd0000d8eb0a1b89a557fe20b2
+
+	Lines: +4, -3
+	Files:	src/main/print-dyesub.c (+4, -3)
+
+	dyesub:  Sinfonia CHC-S2245 needs its data in packed RGB.
+
+2020-07-29  <Solomon Peachy>	cb5cba2654cb80dfc49e6589c70ca65c48d4bfdb
+
+	Lines: +34, -3
+	Files:	src/main/print-dyesub.c (+34, -3)
+
+	dyesub:  Correct print sizes for CHC-S2245
+
+2020-07-29  <Solomon Peachy>	a67f272349737329f9188eb81f737d8e11111aa4
+
+	Lines: +96, -5
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+94, -4)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Add 'PrintQuality' options to S2245 and EK6900
+
+	(They still don't work due to backend issues, and remain EXPERIMENTAL)
+
+2020-07-29  <Solomon Peachy>	c93355bb49d65c61a6497e692bfc7bc72c4b168c
+
+	Lines: +3, -2
+	Files:	NEWS (+1, -1)
+		src/cups/backend_mitsud90.c (+1, -1)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Mitsubishi CP-M15 added as a variant of the CP-M1
+
+2020-06-13  <Solomon Peachy>	bea1959ccf0b984a6dc9bf92154c826e5e808f15
+
+	Lines: +25, -11
+	Files:	README (+25, -11)
+
+	README:  Update the list of dyesub printers supported by the backend
+
+2020-06-11  <Solomon Peachy>	3f86bdd1160ab50b12564679da192fbf3bae34c7
+
+	Lines: +1, -0
+	Files:	src/cups/backend_common.h (+1, -0)
+
+	dyesub: backend:  Commit a missing definition
+
+2020-06-11  <Solomon Peachy>	0878de4b5a73cbcfe98fbc8d59670a28b5ea1070
+
+	Lines: +58, -29
+	Files:	src/cups/backend_mitsu9550.c (+58, -29)
+
+	dyesub: backend:  Bugfixes for the Mitsubishi CP98xx family
+
+2020-06-04  <Solomon Peachy>	09dbba66daac4c1b95a302ea08d7889e70882301
+
+	Lines: +1, -1
+	Files:	src/cups/Makefile.am (+1, -1)
+
+	dyesub: backend:  Fix a typo in the Makefile
+
+2020-06-04  <Solomon Peachy>	f53ecf215b53e23cbe01e0e4a1503c6f9647fdf6
+
+	Lines: +2, -2
+	Files:	src/cups/backend_mitsu9550.c (+2, -2)
+
+	Revert "mitsu98xx:  the LUT needs to process the data in RGB format, not BGR."
+
+	This reverts commit d4de786ed4ced2d213387fe5cf293a0da72f2436.
+
+2020-06-03  <Solomon Peachy>	563798b48d7dc8b50c777b67773abb05eb7b096e
+
+	Lines: +118, -0
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+116, -0)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Experimental support for the Mitsubishi CP30DW MedSci printer.
+
+	Does not include backend changes yet.
+
+2020-06-03  <Solomon Peachy>	d4de786ed4ced2d213387fe5cf293a0da72f2436
+
+	Lines: +2, -2
+	Files:	src/cups/backend_mitsu9550.c (+2, -2)
+
+	mitsu98xx:  the LUT needs to process the data in RGB format, not BGR.
+
+2020-05-01  <Solomon Peachy>	1610ac92735c2e8237b574f6096a78d1ed3127d8
+
+	Lines: +6, -0
+	Files:	src/cups/blacklist (+6, -0)
+
+	dyesub: backend:  Update usb blacklist to include QW410 and CZ-01
+
+2020-05-01  <Solomon Peachy>	2e0af53bd83a19cee3428c17907bbcd6e9befe95
+
+	Lines: +1, -0
+	Files:	src/cups/backend_common.h (+1, -0)
+
+	dyesub: backend:  Commit missing change for the QW410
+
+2020-04-30  <Solomon Peachy>	3b166d596188aacd544839625f93bb5116d8f18c
+
+	Lines: +4, -0
+	Files:	src/main/print-dyesub.c (+4, -0)
+
+	dyesub: Add 4.5x6.75" size to the QW410 / CZ-01
+
+2020-04-30  <Solomon Peachy>	d0533caad909190a2c35430dbee7bdc1ef771f31
+
+	Lines: +435, -11
+	Files:	NEWS (+2, -0)
+		src/cups/backend_dnpds40.c (+174, -10)
+		src/main/print-dyesub.c (+257, -1)
+		src/xml/printers/dyesub.xml (+2, -0)
+
+	dyesub:  Support the DNP DS-QW410 and Citizen CZ-01
+
+2020-03-31  <Solomon Peachy>	414d35d86f5f8c5cc5db5db388b4a361cf193a7d
+
+	Lines: +9, -1
+	Files:	configure.ac (+1, -1)
+		src/cups/cups-calibrate.c (+2, -0)
+		src/cups/gutenprint.c (+6, -0)
+
+	A few more portability fixes for the CUPS code
+
+2020-03-31  <Gernot Hassenpflug>	0b4017964332ab419fd22828324a4f52a1b84736
+
+	Lines: +14, -7
+	Files:	NEWS (+7, -0)
+		src/main/canon-inks.h (+7, -7)
+
+	Corrected inkset bug for Canon iP6210D, iP6220D, iP6310D, iP6320D
+
+2020-03-30  <Solomon Peachy>	46ed9edfb9078553a704a05db2e7c6f693a2af88
+
+	Lines: +33, -11
+	Files:	NEWS (+1, -0)
+		src/cups/backend_mitsu.c (+12, -4)
+		src/cups/backend_mitsu.h (+3, -3)
+		src/cups/backend_mitsu70x.c (+17, -4)
+
+	dyesub:  The Mitsubishi CP-D70DW-S variant is now supported.
+
+2020-03-24  <Solomon Peachy>	ebc729d0e75e60c592bc4368685f13d6561a0e8e
+
+	Lines: +1, -1
+	Files:	src/cups/Makefile.am (+1, -1)
+
+	backend:  Use the same CFLAGS as the rest of the compile.
+
+2020-03-24  <Solomon Peachy>	27b82cd2e27ed0498681034d1a0a40a15145ebad
+
+	Lines: +53, -53
+	Files:	src/cups/backend_canonselphy.c (+5, -7)
+		src/cups/backend_canonselphyneo.c (+3, -3)
+		src/cups/backend_common.c (+6, -5)
+		src/cups/backend_common.h (+1, -1)
+		src/cups/backend_dnpds40.c (+1, -1)
+		src/cups/backend_hiti.c (+10, -9)
+		src/cups/backend_kodak1400.c (+1, -1)
+		src/cups/backend_kodak6800.c (+1, -1)
+		src/cups/backend_magicard.c (+4, -4)
+		src/cups/backend_mitsu.c (+1, -1)
+		src/cups/backend_mitsu.h (+1, -1)
+		src/cups/backend_mitsu70x.c (+6, -6)
+		src/cups/backend_mitsu9550.c (+2, -2)
+		src/cups/backend_mitsud90.c (+2, -2)
+		src/cups/backend_shinkos1245.c (+3, -3)
+		src/cups/backend_shinkos2145.c (+2, -2)
+		src/cups/backend_shinkos6145.c (+1, -1)
+		src/cups/backend_shinkos6245.c (+1, -1)
+		src/cups/backend_sinfonia.c (+1, -1)
+		src/cups/backend_sonyupd.c (+1, -1)
+
+	dyesub: backend:  Fix up a large pile of compile warnings (and two errors)
+
+2020-03-23  <Solomon Peachy>	c658d661c3ba837c9c6571a4cf8a8b8a58f966f8
+
+	Lines: +2, -2
+	Files:	configure.ac (+2, -2)
+
+	build:  Use -std=c99 for all builds, not just developer mode
+
+2020-03-22  <Solomon Peachy>	fa561a0324a5d73b8cf05443e5148b50f97027ea
+
+	Lines: +8, -0
+	Files:	configure.ac (+1, -0)
+		src/xml/printers/check_duplicate_printers.test.c (+7, -0)
+
+	test for setenv() in configure script, and only use it if it's there.
+
+2020-03-22  <Solomon Peachy>	a4740babf29d4a2b5c47e0a8721644a36f75134e
+
+	Lines: +1, -1
+	Files:	src/cups/Makefile.am (+1, -1)
+
+	dyesub: backend: Fix missing file in Makefile
+
+2020-03-22  <Solomon Peachy>	045790c384b96d6e28651e982bcea1aedd1c7da0
+
+	Lines: +1, -1
+	Files:	src/xml/printers/check_duplicate_printers.test.c (+1, -1)
+
+	check_duplicate_printers: use putenv() instead of setenv() for portability.
+
+2020-03-22  <Solomon Peachy>	008e3c70b94d7c693b61165c8df33f55c40fd4fc
+
+	Lines: +4, -0
+	Files:	src/main/print-dyesub.c (+3, -0)
+		src/main/xmlppd.c (+1, -0)
+
+	Fix a couple of compile errors when cross-compiling with mingw
+
+2020-03-22  <Solomon Peachy>	308217070f781e7ac97bcd9bda1fbd40aa3e98c2
+
+	Lines: +0, -20
+	Files:	src/main/print-dyesub.c (+0, -20)
+
+	dyesub:  Get rid of now-unsusd dyesub_adjust_curve() function
+
+2020-03-22  <Solomon Peachy>	6bcc0db5b7cf2538d7c339321e99effa00cca81a
+
+	Lines: +4, -0
+	Files:	src/main/print-dyesub.c (+4, -0)
+
+	dyesub:  add return value to sony up-dr895/897 parse_parameter() functions
+
+2020-03-22  <Solomon Peachy>	c6121eccf02f327393ddc04333f7d540e1e47e26
+
+	Lines: +3577, -1642
+	Files:	NEWS (+1, -1)
+		src/cups/Makefile.am (+1, -1)
+		src/cups/backend_canonselphy.c (+16, -24)
+		src/cups/backend_canonselphyneo.c (+4, -5)
+		src/cups/backend_common.c (+568, -204)
+		src/cups/backend_common.h (+108, -61)
+		src/cups/backend_dnpds40.c (+384, -217)
+		src/cups/backend_hiti.c (+362, -80)
+		src/cups/backend_kodak1400.c (+10, -10)
+		src/cups/backend_kodak605.c (+83, -7)
+		src/cups/backend_kodak6800.c (+62, -15)
+		src/cups/backend_magicard.c (+6, -8)
+		src/cups/backend_mitsu.c (added +295)
+		src/cups/backend_mitsu.h (added +136)
+		src/cups/backend_mitsu70x.c (+226, -373)
+		src/cups/backend_mitsu9550.c (+169, -355)
+		src/cups/backend_mitsud90.c (+611, -150)
+		src/cups/backend_mitsup95d.c (+37, -14)
+		src/cups/backend_shinkos1245.c (+58, -20)
+		src/cups/backend_shinkos2145.c (+78, -10)
+		src/cups/backend_shinkos6145.c (+231, -49)
+		src/cups/backend_shinkos6245.c (+97, -11)
+		src/cups/backend_sinfonia.c (+4, -4)
+		src/cups/backend_sinfonia.h (+5, -2)
+		src/cups/backend_sonyupd.c (+8, -12)
+		src/cups/backend_sonyupdneo.c (+13, -8)
+		src/cups/blacklist (+3, -0)
+		src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  backend:  Upstream resync, many changes
+
+	 * Job combining support (eg 2* 4x6 -> 8x6-div2)
+	    * Most DNP and Mitsubishi models
+	 * Reworked status query support
+	 * Refactored a lot of common Mitsubishi code
+	 * Mitsubishi CP-M1 support
+	 * Compiles with mingw32
+	 * Many many bugfixes
+
+2020-03-06  <Solomon Peachy>	87846b72010ce88949735e718c042e6efc025399
+
+	Lines: +5, -8
+	Files:	src/main/print-dyesub.c (+5, -8)
+
+	dyesub: Further mitsubishi cutlist fixes.
+
+2020-03-05  <Solomon Peachy>	a39bb6a272a1beeb9f2eb62c5b90b1bea37a9458
+
+	Lines: +29, -18
+	Files:	src/main/print-dyesub.c (+29, -18)
+
+	dyesub:  Fix cut list generation for Mitsubishi CP-D90 and CP-M1 series
+
+2020-03-04  <Solomon Peachy>	2dae8409a5fce3d3cd8eac701b5af537de3d7af2
+
+	Lines: +11, -11
+	Files:	src/main/print-dyesub.c (+11, -11)
+
+	dysub:  Fix a boneheaded merge error.
+
+2020-03-04  <Solomon Peachy>	c79f5f532b890dd4484738d3cab60ecd396b5f97
+
+	Lines: +34, -2
+	Files:	src/main/print-dyesub.c (+34, -2)
+
+	dyesub: Mitsubishi CPM1 latest FW gained support for Fast Print Speed.
+
+2020-03-03  <Solomon Peachy>	77f66ed5b41b423f8e59f70b9ae1379bc4bb146c
+
+	Lines: +8, -2
+	Files:	src/main/print-dyesub.c (+8, -2)
+
+	dyesub:  Fix crash introduced in mitsubishi d90/m1 job end code.
+
+2020-03-03  <Solomon Peachy>	8471a16fc16ee4c1194297c1714154a5eb6af9cb
+
+	Lines: +35, -13
+	Files:	src/main/print-dyesub.c (+35, -13)
+
+	dyesub:  Mitsubishi CP-M1 has an additional color mode, and fix delay accounting.
+
+2020-03-01  <Solomon Peachy>	af90fef4210f458c5b9d5125eb064bc24898ec94
+
+	Lines: +4, -2
+	Files:	src/main/print-dyesub.c (+4, -2)
+
+	dyesub:  Fix up the Mitsubishi CP-M1 header generation
+
+	(Managed to get a successful print!  Stull a bunch of things to finish
+	before I can commit the backend..)
+
+2020-03-01  <Solomon Peachy>	e8bbe1c6be09edef88215e5a2f32559bcbf88d52
+
+	Lines: +21, -18
+	Files:	src/main/print-dyesub.c (+21, -18)
+
+	dyesub:  Fix up print sizes of Mitsubishi CP-M1
+
+	(Screwed up my list, sigh)
+
+2020-03-01  <Solomon Peachy>	00089f59cb01858776d2da123852be6e58fbd20d
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Correct description of Mitsubishi CP-98xx sharpening option
+
+2020-02-29  <Solomon Peachy>	8eba4e6bc69fd2c4b6e644b6336954568d653534
+
+	Lines: +199, -25
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+197, -25)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  EXPERIMENTAL support for the Mitsubishi CP-M1
+
+	(Backend is not committed yet)
+
+2020-02-29  <Solomon Peachy>	a5d811a3d31d7f6fc8d5a25bc2b10a37d1c17d50
+
+	Lines: +1, -1
+	Files:	src/cups/backend_sonyupdneo.c (+1, -1)
+
+	dyesub: backend:  Fix a typo in the Stryker-SDP1000 definition
+
+2020-02-29  <Solomon Peachy>	31bdc90e9f27a299f4b0c4e978673025421a000d
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub:  Fix inverted 'UseLUT' paramter for Mitsubishi CP-D90 family
+
+2020-02-27  <Solomon Peachy>	44b77ef7cb763fc52b73fa9e6515fb44b67de54c
+
+	Lines: +2, -2
+	Files:	src/xml/printers/dyesub.xml (+2, -2)
+
+	dyesub: Add IEE1284 IDs for HiTi P720L and P750L
+
+2020-02-27  <Solomon Peachy>	a276d31e97b5a89db3c6f65106f9498c575f837e
+
+	Lines: +9, -2
+	Files:	NEWS (+1, -0)
+		src/cups/backend_sonyupdneo.c (+4, -2)
+		src/cups/blacklist (+3, -0)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Add entry for Stryker SDP1000 (rebadged Sony UP-DR80MD)
+
+2020-02-16  <Robert Krawitz>	225fddee3bffc0589052f418ded1b65876e99d2f
+
+	Lines: +9, -4
+	Files:	README (+9, -4)
+
+	Clarify instructions for gimp build problems.
+
+2020-02-16  <Robert Krawitz>	6649c7c8cf80d48fd842c26287ea869b7a81304a
+
+	Lines: +19, -8
+	Files:	NEWS (+12, -2)
+		src/xml/printers/escp2.xml (+7, -6)
+
+	Updates for Epson Stylus Office printers
+
+2020-02-12  <Solomon Peachy>	5840ca1b727cd337da40e6c9cc997123c8a44bae
+
+	Lines: +22, -2
+	Files:	src/cups/backend_mitsu9550.c (+6, -1)
+		src/main/print-dyesub.c (+16, -1)
+
+	dyesub:  Mitsubishi CP98xx family also has a sharpness parameter.
+
+	(Ignored by current backend code)
+
+2020-02-12  <Solomon Peachy>	05ae7e70637771992bbee24464442bd1218b7645
+
+	Lines: +4, -5
+	Files:	src/main/print-dyesub.c (+4, -5)
+
+	dyesub:  Mitsubishi CP9800 family needs to have its row data reversed.
+
+	(Similar to the Mitsubishi D70 family..)
+
+2020-01-31  <Solomon Peachy>	487c00e476527677b33fdebfd1d41a9992b9a85d
+
+	Lines: +2, -2
+	Files:	src/cups/backend_shinkos2145.c (+2, -2)
+
+	dyesub: backend:  Fix detection entry for shinko/sinfonia CHC-S2145
+
+2020-01-30  <Solomon Peachy>	0b97008faa0f39a083af0dd32bf537fcd2a648bb
+
+	Lines: +2, -2
+	Files:	src/cups/backend_canonselphy.c (+2, -2)
+
+	dyesub: backend:  Fix detection entry for Canon SELPY CP300
+
+2020-01-30  <Solomon Peachy>	bedbe2da450f6536b6b010308c1c64fc86196235
+
+	Lines: +2, -2
+	Files:	src/cups/backend_shinkos6245.c (+2, -2)
+
+	dyesub: backend:  Fix detection entry for Sinfonia CE1/S6245
+
+2020-01-30  <Solomon Peachy>	0faf5df2b778e0c2e748dcf74a164a2ce2063e85
+
+	Lines: +2, -2
+	Files:	src/cups/backend_sonyupd.c (+2, -2)
+
+	dyyesub: backend:  Fix device entry for Sony UP-D895
+
+2020-01-23  <Solomon Peachy>	146f92d06b6808c7485b90d42bec97a97f35eb0d
+
+	Lines: +3, -3
+	Files:	src/main/print-dyesub.c (+3, -3)
+
+	dyesub:  Correct experimental (and still disabled) sizes on the Mitsu D70 family.
+
+	They should be correct now, but I have no way of testing these new
+	definitions.  They likely require a couple of tweaks to the backend as
+	well.
+
+2020-01-23  <Solomon Peachy>	73b7bf923ac756e223b8f68f5eb427b7a04222a9
+
+	Lines: +3, -2
+	Files:	src/cups/backend_dnpds40.c (+3, -2)
+
+	dyesub: backend: explcitly null-terminate all string buffers from printer.
+
+2020-01-21  <Solomon Peachy>	fee6f7512ba2cedfe325bba809717a347c5c1b74
+
+	Lines: +15, -5
+	Files:	src/cups/backend_dnpds40.c (+13, -4)
+		src/main/print-dyesub.c (+2, -1)
+
+	dyesub:  backend:  Work around a bizzare short read scenario
+
+2020-01-18  <Solomon Peachy>	fd592826685ef7250941ab3b94a19657aafa8a5c
+
+	Lines: +14, -1
+	Files:	src/main/print-dyesub.c (+14, -1)
+
+	dyesub:  Add "No Margin Cut" option to the Mitsubishi CP-D90 family.
+
+2020-01-16  <Solomon Peachy>	b07df96a68b68b2602bc57210498ecbd1f9f2104
+
+	Lines: +56, -56
+	Files:	src/cups/backend_hiti.c (+56, -56)
+
+	dyesub: backend:  Much improved HiTi job control & pipelining.
+
+2020-01-16  <Solomon Peachy>	d47d04e92007dccc3d89a7c1bf1f95af558c56f2
+
+	Lines: +4, -16
+	Files:	src/cups/backend_hiti.c (+4, -16)
+
+	dyesub: backend:  Correct copy accounting with HiTi models
+
+2020-01-16  <Solomon Peachy>	5ee6fcef88290c334b23610d59bd5f7533a67a8f
+
+	Lines: +2, -2
+	Files:	src/cups/backend_common.c (+2, -2)
+
+	dyesub: backend:  Fix a bug in the BCD-to-Integer conversion code.
+
+	(Fixes the lifetime print counter reporting on the Mitsu D70 family)
+
+2020-01-08  <Solomon Peachy>	f7eb9cfa5863c8f392c972122a14a5560684122c
+
+	Lines: +129, -29
+	Files:	NEWS (+4, -0)
+		src/cups/backend_mitsud90.c (+125, -29)
+
+	dyesub: backend: Mitsubishi CP-D90 series can report their serial number
+
+2019-12-22  <Robert Krawitz>	77fb9408c2c535ee569ccd427dce27c2631f44de
+
+	Lines: +0, -1
+	Files:	scripts/build-release (+0, -1)
+
+	Don't list the operations explicitly prior to run.
+
+2019-12-21  <Solomon Peachy>	d1dae7e78f3f208089cbd2ff5fe4335a1d302706
+
+	Lines: +6, -1
+	Files:	src/main/print-dyesub.c (+6, -1)
+
+	dyesub:  Mitsubishi CP-D90 series was not generating 2x6*2 strips properly.
+
+2019-12-18  <Robert Krawitz>	c2eb0b96dc89478cfcec437605d8801d82ae298b
+
+	Lines: +3, -1
+	Files:	scripts/snapstamp (+3, -1)
+
+	snapstamp should use bash rather than sh because of [[ ]]
+
+2019-12-08  <Robert Krawitz>	01f5f0124b94a2208828182884e0b6049c522826
+
+	Lines: +2, -0
+	Files:	NEWS (+2, -0)
+
+	Update with Croation (not Hungarian) translation
+
+2019-12-08  <Robert Krawitz>	a5363a5fd6c20c287c0828a679da562a5fcd2054
+
+	Lines: +12, -9
+	Files:	src/cups/test-ppds.test.in (+6, -9)
+		src/xml/extract-strings.c (+6, -0)
+
+	Use relaxed mode for testing PPD files.
+
+2019-11-29  <Robert Krawitz>	c440c5239b2b0447461173c7905c1258e08bf2b5
+
+	Lines: +1, -1
+	Files:	configure.ac (+1, -1)
+
+	(Belatedly) add Hungarian translation
+
+2019-11-29  <Robert Krawitz>	6e03402e52166a84f7d674b8407e97685a1a8043
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	Exclude .po files (from external source) from preflight
+
+2019-11-29  <Robert Krawitz>	9a265de42ef4b65c67930a3d953e779a161de0d1
+
+	Lines: +9, -1
+	Files:	.travis.yml (+1, -0)
+		scripts/build-release (+7, -0)
+		scripts/travis/full (+1, -1)
+
+	Check .po file fetch
+
+2019-11-25  <Solomon Peachy>	ed9199e8fcb4d12c6e4a6ddaa17136706fef4b60
+
+	Lines: +2, -2
+	Files:	NEWS (+2, -2)
+
+	NEWS:  Fix phrasing of some recent changes.
+
+2019-11-23  <Solomon Peachy>	ae508c6528b68810f63b2ec9bdaf5bf2bbe10e16
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Make 'DyesubLegacyGamma' an ADVANCED option (rather than BASIC)
+
+2019-11-20  <Solomon Peachy>	0d7f8b47cb36d82cdbad021a7497f92a92e13f2f
+
+	Lines: +3, -3
+	Files:	src/cups/backend_dnpds40.c (+3, -3)
+
+	dyesub: backend:  Minor bugfix for DNP DS820 when printing from Windows.
+
+2019-11-20  <Solomon Peachy>	abd1a4d6f1e29f94013a459ce764ea1df55371a2
+
+	Lines: +2, -1
+	Files:	NEWS (+1, -0)
+		src/main/print-dyesub.c (+1, -1)
+
+	dyesub:  Fix incorrect color order for the Mitsubishi CP-D90DW
+
+	Printer needs RGB data, not BGR.
+
+2019-11-17  <Solomon Peachy>	ecfed957dfc06b2d83984b87fddada41ec8f3be8
+
+	Lines: +7, -8
+	Files:	src/cups/backend_hiti.c (+7, -8)
+
+	dyesub: backend:  Inorrect image position offset was being applied.
+
+2019-11-15  <Solomon Peachy>	4b83300b653e935d00df90fd7e8e2ac2a47a788c
+
+	Lines: +9, -7
+	Files:	src/cups/backend_hiti.c (+7, -6)
+		src/cups/backend_sonyupdneo.c (+2, -1)
+
+	dyesub: backend:  Fix a couple of bugs in hiti and sonyneo code.
+
+2019-11-14  <Solomon Peachy>	3238639fe041363f78b9d49ff3ac04bcdab04f25
+
+	Lines: +25, -0
+	Files:	NEWS (+25, -0)
+
+	NEWS: Updated the changelog to reflect dyesub changes
+
+2019-11-14  <Solomon Peachy>	08178089a44fe7c71444e2965f4c29ed8228a93a
+
+	Lines: +15, -35
+	Files:	src/main/print-dyesub.c (+15, -35)
+
+	dyesub:  Consolidate some code in the UP-D898 and UP-CR20L
+
+2019-11-14  <Robert Krawitz>	c2c298b9a74e5a485921bedc00e1cbac8d35f45f
+
+	Lines: +24, -16
+	Files:	NEWS (+14, -6)
+		README (+5, -5)
+		configure.ac (+5, -5)
+
+	Prep for 5.3.4
+
+2019-11-14  <Solomon Peachy>	8aa74670021075583f97dc4f8874695bce2a1c44
+
+	Lines: +1, -1
+	Files:	src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Add IEEE1284 ID for Sony UP-DR80MD
+
+2019-11-14  <Solomon Peachy>	7bf3438d714e0bf6a854651df94a37c57d9ddecc
+
+	Lines: +877, -2
+	Files:	src/cups/Makefile.am (+1, -1)
+		src/cups/backend_common.c (+1, -1)
+		src/cups/backend_sonyupdneo.c (added +875)
+
+	dyesub: backend:  Add backend for newer Sony printers
+
+	Confirmed working:
+
+	 UP-DR80MD
+
+	WIP:
+
+	   UP-DR80, UP-CR20L, UP-D898, UP-CX1
+
+2019-11-14  <Solomon Peachy>	dddfb68d220371c0d441a3df56f74a88dc1ae875
+
+	Lines: +287, -150
+	Files:	src/cups/backend_canonselphy.c (+2, -1)
+		src/cups/backend_canonselphyneo.c (+3, -1)
+		src/cups/backend_common.c (+11, -19)
+		src/cups/backend_common.h (+14, -2)
+		src/cups/backend_dnpds40.c (+7, -5)
+		src/cups/backend_hiti.c (+86, -14)
+		src/cups/backend_kodak1400.c (+2, -1)
+		src/cups/backend_kodak605.c (+5, -4)
+		src/cups/backend_kodak6800.c (+8, -11)
+		src/cups/backend_magicard.c (+3, -2)
+		src/cups/backend_mitsu70x.c (+10, -8)
+		src/cups/backend_mitsu9550.c (+24, -24)
+		src/cups/backend_mitsud90.c (+33, -30)
+		src/cups/backend_mitsup95d.c (+5, -3)
+		src/cups/backend_shinkos1245.c (+8, -4)
+		src/cups/backend_shinkos2145.c (+7, -4)
+		src/cups/backend_shinkos6145.c (+35, -8)
+		src/cups/backend_shinkos6245.c (+5, -3)
+		src/cups/backend_sinfonia.c (+2, -1)
+		src/cups/backend_sinfonia.h (+2, -1)
+		src/cups/backend_sonyupd.c (+9, -4)
+		src/cups/blacklist (+6, -0)
+
+	dyesub: backend:  Upstream sync.  Mostly internal API changes.
+
+2019-11-01  <Solomon Peachy>	c74848496239727e785b2a0d52cc9e0d17922e3c
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub:  Fix a typo in affecting the UP-D80MD, UP-D898 and UP-CR20L.
+
+	All remain EXPERIMENTAL, and not expected to work without further effort.
+
+2019-10-30  <Solomon Peachy>	3dac7cb2be2143fa36424121fee680efefb31034
+
+	Lines: +2, -2
+	Files:	src/xml/printers/dyesub.xml (+2, -2)
+
+	dyesub:  Add IEEE1284 IDs for Citizen CX-02 and CX-02W
+
+2019-10-29  <Solomon Peachy>	aa52814500c3d6eea6ede0f2191731adcbf743b0
+
+	Lines: +1, -1
+	Files:	src/xml/printers/dyesub.xml (+1, -1)
+
+	dyesub:  Add IEEE1284 ID for Kodak 6900. (Still completely untested)
+
+2019-10-27  <Gernot Hassenpflug>	2f6dba0293d8b5e707b078f91ce3872e54f76470
+
+	Lines: +2, -0
+	Files:	NEWS (+2, -0)
+
+	Added Canon E3190, E3195 to exisintg E3100 series.
+
+2019-10-27  <Gernot Hassenpflug>	c0ee5e06b84025026b6b7e9072f4aa5f2c2d9771
+
+	Lines: +2, -0
+	Files:	src/xml/printers/canon.xml (+2, -0)
+
+	Added Canon E3190, E3195 to exisintg E3100 series.
+
+2019-10-25  <Solomon Peachy>	4e1f9ff9c1ff0d6a856a432171a56cac22212c88
+
+	Lines: +34, -9
+	Files:	src/cups/backend_dnpds40.c (+30, -9)
+		src/cups/blacklist (+3, -0)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Add support for Citizen CW-02W
+
+2019-10-24  <Alexander Guz>	db9e1de4f96051efe49365a795c59996d3ecb86f
+
+	Lines: +2, -2
+	Files:	src/gutenprintui2/panel.c (+2, -2)
+
+	Fixed incorrect free
+
+2019-10-23  <Solomon Peachy>	bd639d7ba6bdc1cd9ad504170c8df2cfa7039c88
+
+	Lines: +98, -20
+	Files:	src/cups/backend_hiti.c (+86, -17)
+		src/main/print-dyesub.c (+12, -3)
+
+	dyesub:  hiti:  Properly identify model in the printjob header.
+
+2019-10-10  <Robert Krawitz>	e2c6053b2c5c5e70915ec356626aed48e94a4643
+
+	Lines: +1, -1
+	Files:	scripts/gversion.in (+1, -1)
+
+	Use modern command substitution syntax.
+
+2019-10-10  <Robert Krawitz>	298f1c2e539336e65d892e51bad367a16bd597b3
+
+	Lines: +2, -2
+	Files:	configure.ac (+2, -2)
+
+	Eliminate bash-ism (from Greg Troxel)
+
+2019-10-06  <Robert Krawitz>	5854c97ca0c266cd53555aee2a96b6878c0bafbf
+
+	Lines: +19, -1
+	Files:	scripts/build-release (+19, -1)
+
+	Clean up .po files after final build.
+
+2019-10-04  <Solomon Peachy>	7da58012bd0bf39ffeb2a42fd311ae6d17e1b1a7
+
+	Lines: +114, -192
+	Files:	src/cups/backend_common.h (+2, -2)
+		src/cups/backend_hiti.c (+105, -189)
+		src/cups/blacklist (+7, -1)
+
+	dyesub: hiti: backend robustness improvements, plus P720L/P750L
+
+2019-10-04  <Solomon Peachy>	0db01091f86ff3fc149f4991cd8f367f2ceef364
+
+	Lines: +8, -2
+	Files:	src/main/print-dyesub.c (+8, -2)
+
+	dyesub: hiti:  Fix all errors with HiTi testing found via regression tests.
+
+2019-10-04  <Solomon Peachy>	0f51a759a8a7b621bb799522d46a8443acb70e60
+
+	Lines: +1, -1
+	Files:	src/main/print-dyesub.c (+1, -1)
+
+	dyesub: hiti:  Fix Error in "PrintSpeed" definition
+
+2019-10-04  <Solomon Peachy>	565bafadcb16ccbb8dd55804b99d758ef9624eed
+
+	Lines: +113, -4
+	Files:	src/main/print-dyesub.c (+111, -4)
+		src/xml/printers/dyesub.xml (+2, -0)
+
+	dyesub:  Add EXPERIMENTAL support for the HiTi P720L and P750L models
+
+	(Backend changes to follow)
+
+2019-10-04  <Solomon Peachy>	19afdcd99df3403f49222cebe233696894f2952c
+
+	Lines: +1, -0
+	Files:	src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Add HiTi P525L, functionally identical to the P520L
+
+2019-10-02  <Solomon Peachy>	32d7e22f73ed9604c647e718f2a71a6b2762656f
+
+	Lines: +232, -56
+	Files:	src/cups/backend_hiti.c (+152, -54)
+		src/main/print-dyesub.c (+80, -2)
+
+	dyesub:  hiti-p520:  Further improvements
+
+	 * Add additional print sizes
+	 * Add ability to bypass printer color LUT
+	 * Backend can issue resets
+	 * Backend no longer queries certain parameters on startup
+	 * Major improvements in job control (still flaky)
+
+2019-10-01  <Solomon Peachy>	07fee0bb364dfc562e504dd25c1c3d075d8d549b
+
+	Lines: +2035, -2
+	Files:	src/cups/Makefile.am (+1, -1)
+		src/cups/backend_common.c (+1, -1)
+		src/cups/backend_hiti.c (added +2030)
+		src/cups/blacklist (+3, -0)
+
+	dyesub:  Add backend for HiTi P520L printer.
+
+2019-10-01  <Solomon Peachy>	e7b1c8cc09dfe5f7dd2858e1c4d8f846c611d91b
+
+	Lines: +133, -264
+	Files:	src/cups/backend_canonselphy.c (+11, -16)
+		src/cups/backend_canonselphyneo.c (+2, -11)
+		src/cups/backend_common.c (+16, -5)
+		src/cups/backend_common.h (+58, -54)
+		src/cups/backend_dnpds40.c (+8, -16)
+		src/cups/backend_kodak1400.c (+1, -10)
+		src/cups/backend_kodak605.c (+2, -11)
+		src/cups/backend_kodak6800.c (+1, -10)
+		src/cups/backend_magicard.c (+4, -13)
+		src/cups/backend_mitsu70x.c (+5, -13)
+		src/cups/backend_mitsu9550.c (+3, -13)
+		src/cups/backend_mitsud90.c (+2, -11)
+		src/cups/backend_mitsup95d.c (+2, -11)
+		src/cups/backend_shinkos1245.c (+1, -10)
+		src/cups/backend_shinkos2145.c (+1, -10)
+		src/cups/backend_shinkos6145.c (+12, -19)
+		src/cups/backend_shinkos6245.c (+3, -11)
+		src/cups/backend_sinfonia.c (+0, -10)
+		src/cups/backend_sonyupd.c (+1, -10)
+
+	dyesub:  Backend sync.
+
+	 * #include cleanup
+	 * DNP DS820 logs media subtype in CUPS marker message
+	 * Report printer media identifier via PPD attribute
+
+2019-10-01  <Solomon Peachy>	1029d7b4e1868e6ce0ecfae2ed68f2ef4c42a871
+
+	Lines: +84, -0
+	Files:	src/main/print-dyesub.c (+83, -0)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Initial support for the HiTi P520L
+
+	I had to define a new spool format for the HiTi models, as the Windows
+	spool format was closely tied to Windows print subsystem internals.
+
+2019-09-29  <Solomon Peachy>	9b003b8f1467348e79c5522199b1ed8546016599
+
+	Lines: +2, -2
+	Files:	src/cups/backend_kodak605.c (+2, -2)
+
+	dyesub: backend:  kodak605/70xx: Fix inverted logic in printer idle detection
+
+2019-09-29  <Solomon Peachy>	aca787c55cc5ed5abb1110961f64288d59c0e08f
+
+	Lines: +2, -2
+	Files:	src/main/print-dyesub.c (+2, -2)
+
+	dyesub:  Legacy Gamma behavior defaults to OFF now.
+
+2019-09-27  <Solomon Peachy>	daf34a9748952b305979bb849327b1de2cb609ec
+
+	Lines: +741, -338
+	Files:	src/cups/backend_kodak605.c (+125, -60)
+		src/cups/backend_kodak6800.c (+8, -18)
+		src/cups/backend_shinkos2145.c (+20, -48)
+		src/cups/backend_shinkos6145.c (+47, -78)
+		src/cups/backend_shinkos6245.c (+226, -84)
+		src/cups/backend_sinfonia.c (+220, -30)
+		src/cups/backend_sinfonia.h (+95, -20)
+
+	dysub: backend:   Sinfonia/Kodak updates
+
+	 * Consolidate media type queries
+	 * Consolidate serial number queries
+	 * Support parameter queries on most models
+	 * Much more robust error handling
+	 * Kodak 8810 "cutlist" support
+	 * Correct max media capacity for Kodak 8810 8x10
+	 * Kodak 7010/7015 backprint support (highly experimental)
+	 * Kodak 605/70xx/8810 support disabling control panel buttons
+	 * Tone curve get/set now functions correctly
+	 * Kodak 6800/6850 reset command now functions correctly
+
+2019-09-26  <Solomon Peachy>	b4c2287f3cf3cde38b85386b1eca44933354e203
+
+	Lines: +28, -24
+	Files:	src/cups/backend_common.c (+17, -15)
+		src/cups/backend_common.h (+11, -9)
+
+	dyesub: backend:  Don't error out of detaching kernel driver is not supported.
+
+2019-09-26  <Solomon Peachy>	cf349f27b2c8d8f73a5f96226668e0db4880e1df
+
+	Lines: +4, -3
+	Files:	src/cups/backend_mitsud90.c (+4, -3)
+
+	dyesub: backend: Fix incorrect info dump for two variables.
+
+2019-09-26  <Solomon Peachy>	f4f2a58ba434097e56119bea95d55d5536c878c0
+
+	Lines: +69, -15
+	Files:	src/cups/backend_dnpds40.c (+69, -15)
+
+	dyesub:  backend:  Report media subtype in CUPS marker message
+
+2019-09-22  <Solomon Peachy>	9d53ec3625a432f3c8ce2f3928f069f42e4628dc
+
+	Lines: +20, -21
+	Files:	src/main/print-dyesub.c (+20, -21)
+
+	dyesub:  Add multicut support to kodak 8800/9810
+
+	(Completely untested, as is the rest of this printer's support...)
+
+2019-09-22  <Solomon Peachy>	78c8732ca454f72cc71f2b6cc98af318b165c243
+
+	Lines: +9, -8
+	Files:	src/main/print-dyesub.c (+9, -8)
+
+	kodak8810:  Support multicut sizes (8x4*2, 8x4*3, 8x5*2, 8x6*2)
+
+	Will consider adding asymmetrical sizes (eg 8x6+8x4 or 8x8+8x4).
+
+	(Interestingly, the printer supports arbitrary cutter control and any
+	 print size up to the media max)
+
+	Note that this requires backend changes that are not committed yet.
+	Will follow.
+
+2019-09-19  <Solomon Peachy>	4c8a78dea9a9e4891a32da92818c6c5ce56c67bd
+
+	Lines: +0, -312
+	Files:	src/main/print-dyesub.c (+0, -312)
+
+	dyesub: Remove the per-printer gamma curve correction hooks.
+
+	They haven't worked since 2006, and what few curves there were are wrong
+	in light of the AppGamma fixes.  The proper place for these curves is at
+	the application layer, via the likes of ICC profiles.
+
+2019-09-17  <Gernot Hassenpflug>	53944aa37bf67e9b11f58c0274d9f78aca16e458
+
+	Lines: +1, -0
+	Files:	src/main/print-canon.c (+1, -0)
+
+	Added support for Canon PIXMA GM series
+
+2019-09-13  <Solomon Peachy>	ff1ecd81aeedaef63cce4e1eaca5cb61dcb97914
+
+	Lines: +46, -9
+	Files:	src/main/print-dyesub.c (+46, -9)
+
+	dyesub:  Correct major bugs with gamma "correction"
+
+	 * AppGamma was applied *after* LUT was created
+	 * Per-printer curves were applied after all processing was complete
+
+	This patch moves both calls to occur prior to stp_color_init(), so
+	they have an effect on image processing:
+
+	 * The AppGamma change affects all dyesub printers, resulting in prints
+	   with visibly improved contrast and tonal range.  An option
+	   (LegacyDyesubGamma) was added to allow reverting to the old behavior.
+
+	 * Existing per-printer curves have been explicitly disabled.  This is
+	   because they have been implicitly disabled since 2006, and need to be
+	   re-evaluated in light of the AppGamma change. They can be enabled by
+	   undefining DISABLE_LEGACY_CURVES in print-dyesub.c.
+
+	   Here are the affected models:
+
+	    Olympus P200, P300, P400 series
+	    Canon Selphy Series
+	    Sony UP-DR10
+
+2019-09-13  <Solomon Peachy>	134a3c3f78b7539935d9978e3d8fe1de4082abe2
+
+	Lines: +2, -0
+	Files:	src/cups/backend_mitsu9550.c (+2, -0)
+
+	dyesub: backend:  Tweak the warning suppression for GCC < 9
+
+2019-09-11  <Solomon Peachy>	8ac82c6f5716ec4009ee4c8c47c09770b4fa2918
+
+	Lines: +5, -5
+	Files:	src/xml/printers/dyesub.xml (+5, -5)
+
+	dyesub:  Fix incorrect XML driverid definitions for several models.
+
+2019-09-10  <Solomon Peachy>	4722f7f8bdcb6b00f99360c6f87083121226b8b6
+
+	Lines: +8, -1
+	Files:	src/cups/backend_mitsu9550.c (+8, -1)
+
+	dyesub: backend:  Silence a set of build warnings on GCC9.
+
+	(it's a false positive, so just disable the warning until a planned
+	rewrite of this code eventually comes to pass..)
+
+2019-09-09  <Solomon Peachy>	1bcf0110b5baaebea972c3e01e0ab48bc3e70df8
+
+	Lines: +4, -4
+	Files:	src/main/print-dyesub.c (+4, -4)
+
+	dyesub:  shinko-s6245:  Correct 8x12-div3 print size.
+
+2019-09-07  <Solomon Peachy>	1ba39c69fedf65d42a7c39f66db5f07c8473e625
+
+	Lines: +2, -5
+	Files:	src/main/print-dyesub.c (+2, -5)
+
+	dyesub:  Fix a boneheaded regression introduced on the DNP RX1.
+
+	(introduced in 1f60b4e0e9fd44cc4a35950fb9826f03732266d)
+
+2019-09-06  <Solomon Peachy>	0e39152ba9aaf19c60103fd14abf3a7e21aaa59b
+
+	Lines: +270, -18
+	Files:	src/cups/backend_shinkos6245.c (+236, -12)
+		src/main/print-dyesub.c (+34, -6)
+
+	dyesub: kodak8810:  Support 8x5 and 8x6" sizes.
+
+	(And some backend fixes too)
+
+2019-09-06  <Solomon Peachy>	61f60b4e0e9fd44cc4a35950fb9826f03732266d
+
+	Lines: +3, -13
+	Files:	src/main/print-dyesub.c (+3, -13)
+
+	dyesub: dnp: nocutwaste cleanups for all models.
+
+2019-09-01  <Solomon Peachy>	75666965635d2fde93812ddde8991fe641cceabe
+
+	Lines: +14, -11
+	Files:	src/cups/backend_shinkos1245.c (+0, -10)
+		src/cups/backend_sinfonia.h (+14, -1)
+
+	dyesub: backend:  Fix compile errors in backend.
+
+2019-09-01  <Solomon Peachy>	5d820351c2781b6a623893111ad799897513b86e
+
+	Lines: +91, -9
+	Files:	src/main/print-dyesub.c (+90, -9)
+		src/xml/printers/dyesub.xml (+1, -0)
+
+	dyesub:  Preliminary support for the Kodak 6900
+
+	Backend work is still necessary!
+
+2019-09-01  <Solomon Peachy>	b5a4b69dcd2f5227623a7d204f9c31998bdbd61c
+
+	Lines: +52, -18
+	Files:	src/cups/backend_kodak605.c (+52, -18)
+
+	dyesub: backend:  Kodak 605 and 70xx series have four "buffers"
+
+	So account for all of them.  Also, >4x6 prints need two free buffers instead
+	of one.
+
+2019-09-01  <Solomon Peachy>	a6d9dee3ebb7414843e83e57c75f91184dce841c
+
+	Lines: +40, -74
+	Files:	src/cups/backend_kodak6800.c (+40, -74)
+
+	dyesub: backend:  Fix printer reset for the Kodak 68xx series
+
+2019-08-27  <Robert Krawitz>	2bcf16fa9142dd7e7e80b806bc882cb0e0279a7a
+
+	Lines: +1, -1
+	Files:	scripts/build-release (+1, -1)
+
+	Fix quote.
+
+2019-08-27  <Robert Krawitz>	a804a080062101e181efe62a4f88fa9069824ff5
+
+	Lines: +4, -4
+	Files:	scripts/Makefile.am (+4, -4)
+
+	Distribute the .in scripts
+
+2019-08-25  <Robert Krawitz>	374243ab5c65800bd4b0c9173d1fd98e3a69c07f
+
+	Lines: +1, -0
+	Files:	scripts/build-release (+1, -0)
+
+	Repeat distcheck_minimal after tagging the repo to pick up
+
+	the new release in the git-version-stamp.
+
+2019-08-25  <Robert Krawitz>	587c7e4675afd6fbd67a520301a4a46aa88f6063
+
+	Lines: +40, -5
+	Files:	scripts/build-release (+40, -5)
+
+	Fix generated tag and package names.
+
+	Generate the printer list in full, including the header and footer.
+
+===============================================================================
+Name: gutenprint-5_3_3
+
+2019-08-25  <Robert Krawitz>	38b887592640924df0d9e26a5ab6737f708ab6a9
+
+	Lines: +0, -0
+	Files:	src/testpattern/Checksums/sums.gutenprint-5.3.3.zpaq (added +0)
+
+	Gutenprint gutenprint-5.3.3 release
+
 2019-08-25  <Robert Krawitz>	ee7fdeebf2bda2e0412fdd7731ec4b824488f5f5
 
 	Lines: +18, -17
@@ -148,13 +1535,6 @@
 		src/xml/printers/dyesub.xml (+2, -1)
 
 	dyesub: Preliminary support for Sinfonia CHC-S2245
-
-2019-06-22  <Robert Krawitz>	7924eb3659a7d7774a4ece3250e66926ed1b2374
-
-	Lines: +0, -0
-	Files:	configure.ac (+0, -0)
-
-	Fix trailing whitespace
 
 2019-06-22  <Robert Krawitz>	353480ddd99c39fb16dfa1068def7978612ef52b
 
@@ -1159,14 +2539,6 @@
 
 	Start work on adding full test
 
-2018-10-06  <Robert Krawitz>	38897ee2d28092e9441c7c206bd43e095741ad59
-
-	Lines: +0, -0
-	Files:	src/cups/cups-genppd.c (+0, -0)
-		src/cups/test-rastertogutenprint.in (+0, -0)
-
-	Fix trailing whitespace
-
 2018-10-06  <Robert Krawitz>	07070dc60505b6d3357625282a5aab405751791b
 
 	Lines: +4, -1
@@ -1461,6 +2833,9 @@
 
 	Log the configure arguments, and install the config.summary
 
+===============================================================================
+Name: gutenprint-5_3_1
+
 2018-09-22  <Robert Krawitz>	2039aa5e50e75713c5c5598e830b58ccbf0bb339
 
 	Lines: +0, -0
@@ -1643,13 +3018,6 @@
 
 	Push responsibility of job/page mode handling into printer drivers
 
-2018-09-08  <Robert Krawitz>	57d95476db07359a769c25d801e783c476020bf8
-
-	Lines: +0, -0
-	Files:	src/cups/cups-genppdupdate.in (+0, -0)
-
-	Fix whitespace
-
 2018-09-08  <Robert Krawitz>	4fafcc1ccba0e0966993ef17d03c2a2bfc6da756
 
 	Lines: +64, -1
@@ -1686,8 +3054,7 @@
 2018-09-07  <Robert Krawitz>	b87917cfd6930a260f0edbbeed523cb98bc91636
 
 	Lines: +1, -1
-	Files:	NEWS (+0, -0)
-		scripts/build-release (+1, -1)
+	Files:	scripts/build-release (+1, -1)
 
 	Whitespace cleanup
 
@@ -1876,14 +3243,6 @@
 	AM_GNU_GETTEXT_REQUIRE_VERSION doesn't work everywhere.
 
 	Only check for tag after build.
-
-2018-09-02  <Robert Krawitz>	e71d47dc15fa000664f2821f6f3c74deded3ad2a
-
-	Lines: +0, -0
-	Files:	src/cups/backend_dnpds40.c (+0, -0)
-		src/main/canon-printers.h (+0, -0)
-
-	Fix whitespace errors
 
 2018-09-02  <Robert Krawitz>	c7da678c5f2713275e5b88da84c4f6bb6bbe9522
 
@@ -2382,15 +3741,6 @@
 
 	Shared builds now work with valgrind
 
-2018-04-28  <Robert Krawitz>	8cd8295e6b66c65bdf73da3a0fca97801729121d
-
-	Lines: +0, -0
-	Files:	src/cups/backend_magicard.c (+0, -0)
-		src/cups/backend_mitsu70x.c (+0, -0)
-		src/cups/backend_mitsu9550.c (+0, -0)
-
-	Whitespace cleanup
-
 2018-04-26  <Solomon Peachy>	cb627f5a6d35f79f0529eeec79a5351cd3b7eec2
 
 	Lines: +38, -25
@@ -2566,13 +3916,6 @@
 
 	Make valgrind play nice with non-static builds
 
-2018-04-21  <Robert Krawitz>	1ee66af9c8691502feeffaee34b7171f1f379af1
-
-	Lines: +0, -0
-	Files:	src/main/print-color.c (+0, -0)
-
-	Fix trailing whitespace
-
 2018-04-21  <Robert Krawitz>	c349a45281a84eddf1fb4b88894f3b84f31c6211
 
 	Lines: +1, -1
@@ -2604,13 +3947,6 @@
 	Files:	src/main/print-dyesub.c (+1, -3)
 
 	dyesub:  Fix regression on the Mitsubishi CP98xx family.
-
-2018-04-20  <Robert Krawitz>	54aeaf3bbd3f40c835caf8ebe7c3e1c28b114478
-
-	Lines: +0, -0
-	Files:	src/main/print-dyesub.c (+0, -0)
-
-	Clean up whitespace
 
 2018-04-20  <Robert Krawitz>	99a5cb8bd5c1597d751c765b926901713dcb790e
 
@@ -2756,13 +4092,6 @@
 	Also allow specifying the log directory (via STP_LOG_DIR) to store
 	results externally; this would be useful for a containerized test
 	where the results are logged to external storage.
-
-2018-03-24  <Robert Krawitz>	2ead95f8c13591a57c3083b558e8e9b37f015b0a
-
-	Lines: +0, -0
-	Files:	src/main/print-dyesub.c (+0, -0)
-
-	Clean up trailing whitespace
 
 2018-03-24  <Robert Krawitz>	5deb047064559af81a8253b42e734b8aa3d197f7
 
@@ -3057,7 +4386,6 @@
 	Files:	Makefile.am (+3, -0)
 		configure.ac (+8, -0)
 		src/cups/test-rastertogutenprint.in (+39, -10)
-		src/testpattern/Makefile.am (+0, -0)
 		src/testpattern/run-testpattern-2.check.in (+12, -7)
 
 	Fix valgrind issue in CUPS test; add check-valgrind-minimal test.
@@ -3510,18 +4838,6 @@
 	Change STP_FAST_TEST to STP_TEST_FAST.
 
 	Add STP_TEST_FAMILY to allow restricting testing to one family.
-
-2018-01-07  <Robert Krawitz>	a1728fbe61e017cd9d1d80dc453ca315d0f77d87
-
-	Lines: +0, -0
-	Files:	src/cups/backend_mitsu70x.c (+0, -0)
-		src/main/channel.c (+0, -0)
-		src/main/print-canon.c (+0, -0)
-		src/main/print-dyesub.c (+0, -0)
-		src/main/print-pcl.c (+0, -0)
-		test/pcl-unprint.c (+0, -0)
-
-	Cleanup trailing whitespace
 
 2018-01-05  <Solomon Peachy>	4b2779a629e4aeddb678354fb0969bbd5d3f3dcb
 
@@ -4484,17 +5800,6 @@
 
 	Correctly handle relative pathname for wzpaq.
 
-2017-11-24  <Robert Krawitz>	3812b8964332c9871ff5a6965d91b1de397e9706
-
-	Lines: +0, -0
-	Files:	src/cups/backend_common.c (+0, -0)
-		src/cups/backend_magicard.c (+0, -0)
-		src/cups/backend_shinkos6245.c (+0, -0)
-		src/main/print-dyesub.c (+0, -0)
-		src/testpattern/compare-checksums.in (+0, -0)
-
-	Trailing whitespace cleanup
-
 2017-11-24  <Robert Krawitz>	88769eaacb790a14814ecbe47ccf00cf95196da9
 
 	Lines: +305, -1
@@ -4585,11 +5890,9 @@
 
 	Lines: +85, -64
 	Files:	.gitignore (+46, -33)
-		AUTHORS (+0, -0)
 		configure.ac (+21, -16)
 		m4/stp.m4 (+3, -0)
 		scripts/gversion.in (+1, -1)
-		scripts/wzpaq.in (+0, -0)
 		scripts/{test-gversion => test-gversion.in} (+1, -1)
 		src/cups/test-rastertogutenprint.in (+0, -0)
 		src/cups/{test-ppds => test-ppds.in} (+1, -1)
@@ -4598,7 +5901,6 @@
 		src/testpattern/{compare-image-files => compare-image-files.in} (+1, -1)
 		src/testpattern/{run-testpattern => run-testpattern.in} (+1, -1)
 		src/testpattern/{run-testpattern-1 => run-testpattern-1.in} (+1, -1)
-		src/xml/escp2/inputslots/pro3880.xml (+0, -0)
 		test/{compress-5level.sh => compress-5level.sh.in} (+1, -1)
 		test/{compress-6level.sh => compress-6level.sh.in} (+1, -1)
 		test/{parse-bjc => parse-bjc.in} (+1, -1)
@@ -4704,13 +6006,6 @@
 
 	Don't cache XML objects that don't need to persist.
 
-2017-11-14  <Robert Krawitz>	01dd2d3f89d84b0a4fae9a87f21dc4d631827d5a
-
-	Lines: +0, -0
-	Files:	src/cups/backend_common.h (+0, -0)
-
-	Whitespace cleanup
-
 2017-11-12  <Robert Krawitz>	3bb2ffa3f7bf369661a7d1edf780b2deeac58957
 
 	Lines: +68, -0
@@ -4728,7 +6023,6 @@
 		src/main/print-escp2-data.c (+17, -17)
 		src/main/print-escp2.c (+90, -90)
 		src/main/print-escp2.h (+22, -24)
-		src/main/xml.c (+0, -0)
 		src/xml/escp2/model/base/Makefile.am (+1, -0)
 		src/xml/escp2/model/base/c8x.xml (+1, -45)
 		src/xml/escp2/model/base/c8x_base.xml (added +69)
@@ -4999,13 +6293,6 @@
 		src/cups/{rastertoprinter.c => rastertogutenprint.c} (+0, -0)
 
 	rename rastertoprinter.c to rastertogutenprint.c to correspond with binary
-
-2017-11-01  <Robert Krawitz>	7861c60bf13bb5d9666eb5153dd0b6b74e307a18
-
-	Lines: +0, -0
-	Files:	src/cups/backend_mitsu70x.c (+0, -0)
-
-	Remove stray space-at-end-of-line
 
 2017-11-01  <Robert Krawitz>	e304b5e2702f41da7ba9af730eff636da79f8ef7
 
@@ -5505,166 +6792,43 @@ Name: gutenprint-5_2_13
 
 	Edited NEWS file layout of new Canon printers in upcoming release
 
-2017-07-04  <Robert Krawitz>	659e1859f7907b4ac11c0311b07f130fb404a33a
-
-	Lines: +0, -0
-	Files:	include/gutenprint/mxml.h (+0, -0)
-		include/gutenprint/printers.h (+0, -0)
-		include/gutenprint/vars.h (+0, -0)
-		src/main/print-canon.c (+0, -0)
-		src/main/print-escp2.c (+0, -0)
-		src/main/print-lexmark.c (+0, -0)
-		src/main/print-vars.c (+0, -0)
-		src/main/printers.c (+0, -0)
-
-	Clean up stray whitespace
-
 2017-07-04  <Robert Krawitz>	6a79141b9c54110a24af25b4e8efa1052bb04f65
 
 	Lines: +1, -52
 	Files:	Makefile.am (+0, -1)
-		NEWS (+0, -0)
-		README (+0, -0)
-		configure.ac (+0, -0)
-		doc/5.0-release-plan.txt (+0, -0)
-		doc/Makefile.am (+0, -0)
 		doc/developer/gpl-appendix.xml (+0, -1)
-		doc/developer/new-printer.xml (+0, -0)
-		doc/developer/problems.xml (+0, -0)
-		doc/gutenprint.dox.in (+0, -0)
-		doc/gutenprintui2.dox.in (+0, -0)
 		doc/users_guide/README (+0, -4)
 		doc/users_guide/cups-edition.sgml (+0, -3)
-		doc/users_guide/cups.sgml (+0, -0)
 		doc/users_guide/figures/README (+0, -2)
 		doc/users_guide/gimp-edition.sgml (+0, -3)
-		doc/users_guide/gimp.sgml (+0, -0)
 		doc/users_guide/users-guide.sgml (+0, -3)
 		doc/users_guide/util-edition.sgml (+0, -3)
-		doc/users_guide/utils.sgml (+0, -0)
-		include/gutenprint/bit-ops.h (+0, -0)
-		include/gutenprint/vars.h (+0, -0)
-		include/gutenprintui2/curve.h (+0, -0)
-		include/gutenprintui2/gammacurve.h (+0, -0)
-		include/gutenprintui2/gutenprintui.h (+0, -0)
-		m4/stp_cups.m4 (+0, -0)
-		m4extra/glib.m4 (+0, -0)
-		m4extra/gtk.m4 (+0, -0)
-		m4extra/libtool.m4 (+0, -0)
-		m4extra/pkg.m4 (+0, -0)
-		macosx/Gutenprint Utility for EPSON Inkjet Printers/Gutenprint Utility for EPSON Inkjet Printers.command (+0, -0)
-		macosx/Gutenprint Utility for EPSON Inkjet Printers/Utility Read Me.rtf (+0, -0)
-		macosx/README.vm-environment (+0, -0)
-		macosx/compare-gutenprint-5 (+0, -0)
-		macosx/gutenprint-version (+0, -0)
-		macosx/make-build (+0, -0)
-		macosx/make-dmg (+0, -0)
-		macosx/make-doc (+0, -0)
-		macosx/make-installer (+0, -0)
-		macosx/scripts/Gutenprint Utility for EPSON Inkjet Printers.command (+0, -0)
 		macosx/scripts/uninstall-gutenprint.command (+0, -1)
-		macosx/setup-env.sample (+0, -0)
-		macosx/src/gutenprint.dmg.src/Contents/Documentation/GPL License.rtf (+0, -0)
-		macosx/src/gutenprint.dmg.src/Contents/Gutenprint Utility for EPSON Inkjet Printers/Gutenprint Utility for EPSON Inkjet Printers.command (+0, -0)
-		macosx/src/gutenprint.dmg.src/Contents/Gutenprint Utility for EPSON Inkjet Printers/Utility Read Me.rtf (+0, -0)
-		macosx/src/gutenprint.dmg.src/Contents/Uninstaller Read Me.rtfd/TXT.rtf (+0, -0)
-		macosx/src/gutenprint.dmg.src/name (+0, -0)
-		macosx/src/gutenprint.pkg.src/Resources/English.lproj/Gutenprint 5.info (+0, -0)
-		macosx/src/gutenprint.pkg.src/Resources/License.txt (+0, -0)
-		macosx/src/gutenprint.pkg.src/Resources/ReadMe.html (+0, -0)
-		macosx/src/gutenprint.pkg.src/Resources/preflight (+0, -0)
-		macosx/src/gutenprint.pkg.src/name (+0, -0)
-		macosx/src/install-gutenprint.mpkg.src/make-contents (+0, -0)
-		macosx/src/install-gutenprint.mpkg.src/name (+0, -0)
 		macosx/subversion (+1, -0)
 		man/Makefile.am (+0, -1)
-		man/escputil.1.in (+0, -0)
-		scripts/autogen.sh (+0, -0)
-		scripts/epsf.tex (+0, -0)
-		scripts/gversion.in (+0, -0)
-		scripts/test-gversion (+0, -0)
-		src/cups/backend_canonselphy.c (+0, -0)
-		src/cups/backend_canonselphyneo.c (+0, -0)
-		src/cups/backend_citizencw01.c (+0, -0)
-		src/cups/backend_common.c (+0, -0)
-		src/cups/backend_dnpds40.c (+0, -0)
-		src/cups/backend_kodak1400.c (+0, -0)
-		src/cups/backend_kodak605.c (+0, -0)
-		src/cups/backend_kodak6800.c (+0, -0)
-		src/cups/backend_mitsu70x.c (+0, -0)
-		src/cups/backend_mitsu9550.c (+0, -0)
 		src/cups/backend_mitsup95d.c (+0, -2)
-		src/cups/backend_shinkos1245.c (+0, -0)
-		src/cups/backend_shinkos2145.c (+0, -0)
-		src/cups/backend_shinkos6145.c (+0, -0)
-		src/cups/backend_shinkos6245.c (+0, -0)
-		src/cups/backend_sonyupdr150.c (+0, -0)
-		src/cups/blacklist (+0, -0)
-		src/cups/calibrate.ppm (+0, -0)
 		src/cups/commands/SetAlignment.cmd (+0, -1)
-		src/cups/cups-genppdupdate.in (+0, -0)
-		src/cups/genppd.c (+0, -0)
-		src/cups/i18n.c (+0, -0)
-		src/cups/test-rastertogutenprint.in (+0, -0)
 		src/escputil/d4lib.c (+0, -1)
 		src/escputil/d4lib.h (+0, -1)
 		src/gimp2/print-gutenprint.c (+0, -1)
-		src/gimp2/print-image-gimp.c (+0, -0)
 		src/gimp2/print-print.c (+0, -1)
-		src/gimp2/print.c (+0, -0)
 		src/gutenprintui2/gammacurve.c (+0, -1)
-		src/gutenprintui2/panel.c (+0, -0)
-		src/gutenprintui2/plist.c (+0, -0)
-		src/gutenprintui2/printrcy.y (+0, -0)
 		src/main/buffer-image.c (+0, -2)
 		src/main/canon-inks.h (+0, -1)
-		src/main/canon-media-mode.h (+0, -0)
-		src/main/canon-media.h (+0, -0)
 		src/main/canon-modes.h (+0, -1)
 		src/main/canon-printers.h (+0, -1)
-		src/main/channel.c (+0, -0)
 		src/main/color.c (+0, -1)
 		src/main/curve-cache.c (+0, -1)
-		src/main/curve.c (+0, -0)
-		src/main/dither-eventone.c (+0, -0)
-		src/main/dither-inks.c (+0, -0)
-		src/main/dither-main.c (+0, -0)
-		src/main/dither-ordered.c (+0, -0)
-		src/main/escp2-driver.c (+0, -0)
-		src/main/escp2-resolutions.c (+0, -0)
 		src/main/generic-options.c (+0, -1)
-		src/main/mxml-attr.c (+0, -0)
-		src/main/mxml-file.c (+0, -0)
-		src/main/mxml-node.c (+0, -0)
-		src/main/path.c (+0, -0)
 		src/main/print-canon.c (+0, -1)
-		src/main/print-color.c (+0, -0)
-		src/main/print-dither-matrices.c (+0, -0)
-		src/main/print-dpl.c (+0, -0)
-		src/main/print-escp2-data.c (+0, -0)
 		src/main/print-escp2.c (+0, -1)
-		src/main/print-escp2.h (+0, -0)
-		src/main/print-lexmark.c (+0, -0)
 		src/main/print-olympus.c (+0, -1)
-		src/main/print-papers.c (+0, -0)
-		src/main/print-pcl.c (+0, -0)
 		src/main/print-ps.c (+0, -1)
-		src/main/print-raw.c (+0, -0)
 		src/main/xml.c (+0, -3)
-		src/main/xmlppd.c (+0, -0)
-		src/testpattern/printer_options.c (+0, -0)
-		src/testpattern/run-testpattern-2.in (+0, -0)
-		src/testpattern/testpattern.c (+0, -0)
 		src/testpattern/testpattern.h (+0, -2)
-		src/xml/escp2/model/model_71.xml (+0, -0)
-		src/xml/papers.xml (+0, -0)
-		src/xml/printers.xml (+0, -0)
 		test/bjc-unprint.c (+0, -1)
-		test/curve.c (+0, -0)
-		test/escp2-weavetest.c (+0, -0)
 		test/gen-printer-list.c (+0, -1)
 		test/parse-escp2 (+0, -1)
-		test/pixma_parse.c (+0, -0)
 		test/pixma_parse.h (+0, -2)
 
 	Clean up whitespace.
@@ -5880,8 +7044,7 @@ Name: gutenprint-5_2_13
 2017-05-27  <Robert Krawitz>	ba5071b7a1026616cb4678030d21b40a0b7f4c81
 
 	Lines: +4, -11
-	Files:	include/gutenprint/mxml.h (+0, -0)
-		include/gutenprint/types.h (+4, -5)
+	Files:	include/gutenprint/types.h (+4, -5)
 		src/cups/genppd.c (+0, -2)
 		src/gutenprintui2/panel.c (+0, -4)
 
@@ -8060,13 +9223,6 @@ Name: gutenprint-5_2_12-pre4-presync
 	Files:	src/main/print-olympus.c (+4, -3)
 
 	dyesub:  Correct lamination dimensions on EK305 and Mitsu K60
-
-2016-09-10  <Solomon Peachy>	3d172a94ce29bc027ca92d00aea5f30ea80f6648
-
-	Lines: +0, -0
-	Files:	src/main/print-olympus.c (+0, -0)
-
-	dyesub:  Fix a compile warning introduced in the last commit.
 
 2016-09-08  <Solomon Peachy>	bb97acf729eb774b5ab079a3177bf7115efae558
 
