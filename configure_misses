@@ -1,23 +1,38 @@
-Configure miss: x86_64-generic-linux-gnu-cups-config
-Configure miss: whether to build CUPS PPD files
-Configure miss: whether to build translated CUPS PPD files
-Configure miss: whether to build globalized CUPS PPD files
-Configure miss: whether to build simplified CUPS PPD files
-Configure miss: whether to place CUPS PPD files at top level
-Configure miss: whether to build a statically-linked cups-genppd and rastertogutenprint.  WARNING: Please read the README and NEWS (release notes) CAREFULLY before using --disable-static-genppd!
-Configure miss: whether to turn on debugging in build
-Configure miss: whether to turn on profiling in build
-Configure miss: whether to install GIMP plugin in home directory
-Configure miss: x86_64-generic-linux-gnu-gimptool-2.0
 Configure miss: convert
-Configure miss: texi2html
+Configure miss: convert
+Configure miss: db2html
+Configure miss: db2html
+Configure miss: db2pdf
 Configure miss: db2pdf
 Configure miss: db2ps
-Configure miss: db2html
+Configure miss: db2ps
+Configure miss: lrzip
 Configure miss: lrzip
 Configure miss: rzip
+Configure miss: rzip
+Configure miss: texi2html
+Configure miss: texi2html
+Configure miss: whether to build CUPS PPD files
+Configure miss: whether to build CUPS PPD files
+Configure miss: whether to build a statically-linked cups-genppd and rastertogutenprint.  WARNING: Please read the README and NEWS (release notes) CAREFULLY before using --disable-static-genppd!
+Configure miss: whether to build a statically-linked cups-genppd and rastertogutenprint.  WARNING: Please read the README and NEWS (release notes) CAREFULLY before using --disable-static-genppd!
+Configure miss: whether to build globalized CUPS PPD files
+Configure miss: whether to build globalized CUPS PPD files
+Configure miss: whether to build simplified CUPS PPD files
+Configure miss: whether to build simplified CUPS PPD files
+Configure miss: whether to build translated CUPS PPD files
+Configure miss: whether to build translated CUPS PPD files
+Configure miss: whether to install GIMP plugin in home directory
+Configure miss: whether to install GIMP plugin in home directory
+Configure miss: whether to place CUPS PPD files at top level
+Configure miss: whether to place CUPS PPD files at top level
+Configure miss: whether to turn on debugging in build
+Configure miss: whether to turn on debugging in build
+Configure miss: whether to turn on profiling in build
+Configure miss: whether to turn on profiling in build
+Configure miss: x86_64-generic-linux-gnu-cups-config
+Configure miss: x86_64-generic-linux-gnu-cups-config
+Configure miss: x86_64-generic-linux-gnu-gimptool-2.0
+Configure miss: x86_64-generic-linux-gnu-gimptool-2.0
 Configure miss: zpaq
-Configure miss: readline in -lreadline
-Configure miss: readline in -lreadline
-Configure miss: readline in -lreadline
-Configure miss: readline in -lreadline
+Configure miss: zpaq

@@ -4,7 +4,7 @@
 #
 Name     : gutenprint
 Version  : 5.3.4
-Release  : 11
+Release  : 12
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Summary  : Gutenprint Top Quality Printer Drivers
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: gutenprint-bin = %{version}-%{release}
 Requires: gutenprint-data = %{version}-%{release}
+Requires: gutenprint-filemap = %{version}-%{release}
 Requires: gutenprint-lib = %{version}-%{release}
 Requires: gutenprint-license = %{version}-%{release}
 Requires: gutenprint-locales = %{version}-%{release}
@@ -40,6 +41,7 @@ Summary: bin components for the gutenprint package.
 Group: Binaries
 Requires: gutenprint-data = %{version}-%{release}
 Requires: gutenprint-license = %{version}-%{release}
+Requires: gutenprint-filemap = %{version}-%{release}
 
 %description bin
 bin components for the gutenprint package.
@@ -74,11 +76,20 @@ Group: Default
 extras components for the gutenprint package.
 
 
+%package filemap
+Summary: filemap components for the gutenprint package.
+Group: Default
+
+%description filemap
+filemap components for the gutenprint package.
+
+
 %package lib
 Summary: lib components for the gutenprint package.
 Group: Libraries
 Requires: gutenprint-data = %{version}-%{release}
 Requires: gutenprint-license = %{version}-%{release}
+Requires: gutenprint-filemap = %{version}-%{release}
 
 %description lib
 lib components for the gutenprint package.
@@ -111,32 +122,49 @@ man components for the gutenprint package.
 %prep
 %setup -q -n gutenprint-5.3.4
 cd %{_builddir}/gutenprint-5.3.4
+pushd ..
+cp -a gutenprint-5.3.4 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607357495
+export SOURCE_DATE_EPOCH=1634255415
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static
+make  %{?_smp_mflags}
+popd
 %install
-export SOURCE_DATE_EPOCH=1607357495
+export SOURCE_DATE_EPOCH=1634255415
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
 cp %{_builddir}/gutenprint-5.3.4/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 cp %{_builddir}/gutenprint-5.3.4/src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/84311ac1a073d7024b8d04c36fb9365fdabdc5e6
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
 %find_lang gutenprint
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -154,6 +182,7 @@ cp %{_builddir}/gutenprint-5.3.4/src/cups/COPYING %{buildroot}/usr/share/package
 /usr/bin/cups-genppd.5.3
 /usr/bin/escputil
 /usr/bin/testpattern
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -554,6 +583,10 @@ cp %{_builddir}/gutenprint-5.3.4/src/cups/COPYING %{buildroot}/usr/share/package
 %defattr(-,root,root,-)
 /usr/bin/cups-genppdupdate
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-gutenprint
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/gutenprint/5.3/modules/color-traditional.so
@@ -569,6 +602,8 @@ cp %{_builddir}/gutenprint-5.3.4/src/cups/COPYING %{buildroot}/usr/share/package
 /usr/lib64/libgutenprint.so.9.5.0
 /usr/lib64/libgutenprintui2.so.2
 /usr/lib64/libgutenprintui2.so.2.5.0
+/usr/share/clear/optimized-elf/lib*
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
