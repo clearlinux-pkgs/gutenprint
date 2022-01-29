@@ -4,7 +4,7 @@
 #
 Name     : gutenprint
 Version  : 5.3.4
-Release  : 12
+Release  : 13
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Summary  : Gutenprint Top Quality Printer Drivers
