@@ -4,7 +4,7 @@
 #
 Name     : gutenprint
 Version  : 5.3.4
-Release  : 15
+Release  : 16
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Summary  : Gutenprint Top Quality Printer Drivers
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656041862
+export SOURCE_DATE_EPOCH=1656124182
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -154,7 +154,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1656041862
+export SOURCE_DATE_EPOCH=1656124182
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
 cp %{_builddir}/gutenprint-5.3.4/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
@@ -174,7 +174,6 @@ popd
 /usr/lib/cups/filter/commandtoepson
 /usr/lib/cups/filter/rastertogutenprint.5.3
 /usr/lib64/gimp/2.0/plug-ins/gutenprint
-/usr/lib64/glibc-hwcaps/x86-64-v3/gutenprint
 /usr/lib64/gutenprint/5.3/config.summary
 
 %files bin
@@ -590,21 +589,12 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/color-traditional.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so.9
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so.9.5.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so.2.5.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-canon.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-dpl.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-dyesub.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-escp2.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-lexmark.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-pcl.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-ps.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/print-raw.so
 /usr/lib64/gutenprint/5.3/modules/color-traditional.so
 /usr/lib64/gutenprint/5.3/modules/print-canon.so
 /usr/lib64/gutenprint/5.3/modules/print-dpl.so
