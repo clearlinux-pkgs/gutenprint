@@ -4,7 +4,7 @@
 #
 Name     : gutenprint
 Version  : 5.3.4
-Release  : 20
+Release  : 21
 URL      : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Source0  : https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.4/gutenprint-5.3.4.tar.xz
 Summary  : Gutenprint Top Quality Printer Drivers
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656124182
+export SOURCE_DATE_EPOCH=1665098491
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -154,11 +154,11 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1656124182
+export SOURCE_DATE_EPOCH=1665098491
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gutenprint
-cp %{_builddir}/gutenprint-5.3.4/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
-cp %{_builddir}/gutenprint-5.3.4/src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/84311ac1a073d7024b8d04c36fb9365fdabdc5e6
+cp %{_builddir}/gutenprint-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/gutenprint-%{version}/src/cups/COPYING %{buildroot}/usr/share/package-licenses/gutenprint/84311ac1a073d7024b8d04c36fb9365fdabdc5e6
 pushd ../buildavx2/
 %make_install_v3
 popd
@@ -574,6 +574,8 @@ popd
 /usr/include/gutenprintui2/gammacurve.h
 /usr/include/gutenprintui2/gutenprintui.h
 /usr/include/gutenprintui2/typebuiltins.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so
 /usr/lib64/libgutenprint.so
 /usr/lib64/libgutenprintui2.so
 /usr/lib64/pkgconfig/gutenprint.pc
@@ -589,10 +591,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so.9
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprint.so.9.5.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgutenprintui2.so.2.5.0
 /usr/lib64/gutenprint/5.3/modules/color-traditional.so
