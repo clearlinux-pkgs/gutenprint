@@ -1,0 +1,4 @@
+/etc/:
+/etc/cups:
+command.types
+cups
